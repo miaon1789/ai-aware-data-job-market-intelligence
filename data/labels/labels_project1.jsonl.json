@@ -1,0 +1,110 @@
+[
+  {
+    "text": "ROLE::Data Analyst / BI",
+    "suffix_key": "1",
+    "background_color": "#2563EB",
+    "text_color": "#ffffff"
+  },
+  {
+    "text": "ROLE::Data Engineer",
+    "suffix_key": "2",
+    "background_color": "#2563EB",
+    "text_color": "#ffffff"
+  },
+  {
+    "text": "ROLE::Data Scientist / ML",
+    "suffix_key": "3",
+    "background_color": "#2563EB",
+    "text_color": "#ffffff"
+  },
+  {
+    "text": "ROLE::AI / Automation",
+    "suffix_key": "4",
+    "background_color": "#2563EB",
+    "text_color": "#ffffff"
+  },
+  {
+    "text": "ROLE::Other / Mixed",
+    "suffix_key": "5",
+    "background_color": "#2563EB",
+    "text_color": "#ffffff"
+  },
+  {
+    "text": "ENTRY_FIT::Likely entry-level",
+    "suffix_key": "q",
+    "background_color": "#16A34A",
+    "text_color": "#ffffff"
+  },
+  {
+    "text": "ENTRY_FIT::Experienced role",
+    "suffix_key": "w",
+    "background_color": "#EA580C",
+    "text_color": "#ffffff"
+  },
+  {
+    "text": "ENTRY_FIT::Unclear",
+    "suffix_key": "e",
+    "background_color": "#64748B",
+    "text_color": "#ffffff"
+  },
+  {
+    "text": "AI_SIGNAL::Explicit GenAI / LLM tool",
+    "suffix_key": "a",
+    "background_color": "#7C3AED",
+    "text_color": "#ffffff"
+  },
+  {
+    "text": "AI_SIGNAL::Explicit AI / ML system work",
+    "suffix_key": "m",
+    "background_color": "#7C3AED",
+    "text_color": "#ffffff"
+  },
+  {
+    "text": "AI_SIGNAL::Workflow automation",
+    "suffix_key": "s",
+    "background_color": "#7C3AED",
+    "text_color": "#ffffff"
+  },
+  {
+    "text": "AI_SIGNAL::AI-adjacent but vague",
+    "suffix_key": "d",
+    "background_color": "#7C3AED",
+    "text_color": "#ffffff"
+  },
+  {
+    "text": "AI_SIGNAL::No AI signal",
+    "suffix_key": "f",
+    "background_color": "#64748B",
+    "text_color": "#ffffff"
+  },
+  {
+    "text": "AI_SIGNAL::Unclear",
+    "suffix_key": "g",
+    "background_color": "#64748B",
+    "text_color": "#ffffff"
+  },
+  {
+    "text": "CODING_SIGNAL::Standalone coding skill",
+    "suffix_key": "z",
+    "background_color": "#0F766E",
+    "text_color": "#ffffff"
+  },
+  {
+    "text": "CODING_SIGNAL::Automation / scripting",
+    "suffix_key": "x",
+    "background_color": "#0F766E",
+    "text_color": "#ffffff"
+  },
+  {
+    "text": "CODING_SIGNAL::Production engineering",
+    "suffix_key": "c",
+    "background_color": "#0F766E",
+    "text_color": "#ffffff"
+  },
+  {
+    "text": "CODING_SIGNAL::No coding signal",
+    "suffix_key": "v",
+    "background_color": "#64748B",
+    "text_color": "#ffffff"
+  }
+]

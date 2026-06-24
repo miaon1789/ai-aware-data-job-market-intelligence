@@ -1,0 +1,32 @@
+.DS_Store
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.streamlit/secrets.toml
+.claude/
+.env
+.env.*
+!.env.example
+*.numbers
+
+# Local drafts not intended for public release.
+docs/*_*_BRIEF.md
+docs/*_*_GUIDE.md
+
+# Source job text may be licence-restricted.
+data/raw/*
+!data/raw/.gitkeep
+data/private/
+data/external/*
+!data/external/.gitkeep
+
+# Reproducible pipeline outputs.
+data/processed/*
+!data/processed/.gitkeep
+data/synthetic/job_ads.csv
+
+*.duckdb
+*.joblib

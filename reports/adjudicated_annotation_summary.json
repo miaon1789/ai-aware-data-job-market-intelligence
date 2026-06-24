@@ -1,0 +1,38 @@
+{
+  "contains_job_text": false,
+  "input_label_rows": 244,
+  "adjudication_rows": 71,
+  "changed_tasks": 33,
+  "changes_by_dimension": {
+    "ai_signal_label": 21,
+    "coding_signal_label": 8,
+    "entry_fit_label": 6,
+    "role_label": 3
+  },
+  "final_role_distribution": {
+    "AI / Automation": 31,
+    "Data Analyst / BI": 35,
+    "Data Engineer": 23,
+    "Data Scientist / ML": 23,
+    "Other / Mixed": 132
+  },
+  "final_entry_fit_distribution": {
+    "Experienced role": 124,
+    "Likely entry-level": 47,
+    "Unclear": 73
+  },
+  "final_ai_signal_distribution": {
+    "AI-adjacent but vague": 26,
+    "Explicit AI / ML system work": 34,
+    "Explicit GenAI / LLM tool": 12,
+    "No AI signal": 163,
+    "Unclear": 3,
+    "Workflow automation": 6
+  },
+  "final_coding_signal_distribution": {
+    "Automation / scripting": 15,
+    "No coding signal": 162,
+    "Production engineering": 64,
+    "Standalone coding skill": 3
+  }
+}

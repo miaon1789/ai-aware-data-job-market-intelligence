@@ -1,0 +1,46 @@
+{
+  "benchmark": "SkillSpan",
+  "commit": "2ccf3de5b5af7a5409b8dd814fb1315dd6e0ae1b",
+  "license": "MIT",
+  "task": "sentence-level detection of any annotated skill or knowledge span",
+  "metrics": {
+    "house": {
+      "samples": 1283,
+      "true_positive": 22,
+      "false_positive": 4,
+      "false_negative": 399,
+      "true_negative": 858,
+      "precision": 0.8462,
+      "recall": 0.0523,
+      "f1": 0.0984,
+      "accuracy": 0.6859
+    },
+    "overall": {
+      "samples": 3569,
+      "true_positive": 143,
+      "false_positive": 29,
+      "false_negative": 831,
+      "true_negative": 2566,
+      "precision": 0.8314,
+      "recall": 0.1468,
+      "f1": 0.2496,
+      "accuracy": 0.759
+    },
+    "tech": {
+      "samples": 2286,
+      "true_positive": 121,
+      "false_positive": 25,
+      "false_negative": 432,
+      "true_negative": 1708,
+      "precision": 0.8288,
+      "recall": 0.2188,
+      "f1": 0.3462,
+      "accuracy": 0.8001
+    }
+  },
+  "limitations": [
+    "SkillSpan is not an Australian labour-market sample.",
+    "This is sentence-level detection, not exact span extraction evaluation.",
+    "This benchmark does not evaluate required/preferred/negated context."
+  ]
+}

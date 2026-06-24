@@ -1,0 +1,66 @@
+{
+  "evaluation": "stratified grouped cross-validation by company",
+  "folds": 5,
+  "samples": 54,
+  "companies": 18,
+  "accuracy": 1.0,
+  "macro_f1": 1.0,
+  "title_only_macro_f1": 1.0,
+  "classes": [
+    "Data Analyst",
+    "Data Engineer",
+    "Data Scientist"
+  ],
+  "confusion_matrix": [
+    [
+      18,
+      0,
+      0
+    ],
+    [
+      0,
+      18,
+      0
+    ],
+    [
+      0,
+      0,
+      18
+    ]
+  ],
+  "per_class": {
+    "Data Analyst": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 18.0
+    },
+    "Data Engineer": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 18.0
+    },
+    "Data Scientist": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 18.0
+    },
+    "accuracy": 1.0,
+    "macro avg": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 54.0
+    },
+    "weighted avg": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 54.0
+    }
+  },
+  "warning": "Synthetic-data metrics demonstrate the evaluation code only.",
+  "training_dataset": "data/synthetic/job_ads.csv"
+}

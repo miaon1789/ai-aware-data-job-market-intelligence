@@ -1,0 +1,21 @@
+{
+  "input_jobs": 421,
+  "skill_mentions": 156,
+  "clusters": 6,
+  "cluster_assignments_private": "data/private/mining/job_clusters.csv",
+  "cluster_summary_private": "data/private/mining/job_cluster_summary.csv",
+  "association_rules_private": "data/private/mining/skill_association_rules.csv",
+  "cluster_summary": "reports/job_cluster_summary.csv",
+  "association_rules": "reports/skill_association_rules.csv",
+  "private_association_rule_count": 12,
+  "public_association_rule_count": 0,
+  "role_label_source": "data/private/annotations_expanded/processed_adjudicated/document_labels.csv",
+  "minimum_public_cell_size": 10,
+  "min_support": 0.005,
+  "min_confidence": 0.2,
+  "methods": [
+    "TF-IDF + KMeans job-family discovery",
+    "pairwise association-rule mining over extracted skills"
+  ],
+  "privacy": "Cluster assignments remain private. Public reports contain no job IDs, titles, descriptions, companies, URLs or source sentences."
+}

@@ -1,0 +1,90 @@
+{
+  "contract": "frozen manifest hash match and strict label validation",
+  "contains_job_text": false,
+  "test_split_unlocked": false,
+  "document": {
+    "annotation_rows": 488,
+    "unique_tasks": 244,
+    "coverage": {
+      "train": {
+        "labelled_tasks": 211,
+        "eligible_tasks": 211,
+        "share": 1.0
+      },
+      "dev": {
+        "labelled_tasks": 33,
+        "eligible_tasks": 33,
+        "share": 1.0
+      },
+      "test": {
+        "labelled_tasks": 0,
+        "eligible_tasks": 56,
+        "share": 0.0
+      }
+    },
+    "role_distribution": {
+      "AI / Automation": 66,
+      "Data Analyst / BI": 72,
+      "Data Engineer": 49,
+      "Data Scientist / ML": 38,
+      "Other / Mixed": 263
+    },
+    "entry_fit_distribution": {
+      "Experienced role": 259,
+      "Likely entry-level": 93,
+      "Unclear": 136
+    },
+    "ai_signal_distribution": {
+      "AI-adjacent but vague": 65,
+      "Explicit AI / ML system work": 58,
+      "Explicit GenAI / LLM tool": 27,
+      "No AI signal": 317,
+      "Unclear": 7,
+      "Workflow automation": 14
+    },
+    "coding_signal_distribution": {
+      "Automation / scripting": 26,
+      "No coding signal": 336,
+      "Production engineering": 119,
+      "Standalone coding skill": 7
+    },
+    "agreement": {
+      "paired_annotations": 244,
+      "role_cohen_kappa": 0.8872,
+      "entry_fit_cohen_kappa": 0.8382,
+      "ai_signal_cohen_kappa": 0.7432,
+      "coding_signal_cohen_kappa": 0.8236,
+      "exact_pair_agreement": 0.709
+    }
+  },
+  "skill": {
+    "annotation_rows": 0,
+    "unique_tasks": 0,
+    "span_count": 0,
+    "coverage": {
+      "train": {
+        "labelled_tasks": 0,
+        "eligible_tasks": 81,
+        "share": 0.0
+      },
+      "dev": {
+        "labelled_tasks": 0,
+        "eligible_tasks": 14,
+        "share": 0.0
+      },
+      "test": {
+        "labelled_tasks": 0,
+        "eligible_tasks": 25,
+        "share": 0.0
+      }
+    },
+    "label_distribution": {},
+    "agreement": {
+      "paired_annotations": 0,
+      "exact_span_precision": null,
+      "exact_span_recall": null,
+      "exact_span_f1": null
+    }
+  },
+  "publication_policy": "aggregate report may be published; normalized labels and source exports stay private"
+}

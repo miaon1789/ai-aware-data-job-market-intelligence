@@ -1,0 +1,7 @@
+role_label,coding_signal_label,job_count,row_total,share_within_row
+AI / Automation,Production engineering,18,31,0.5806
+Data Analyst / BI,No coding signal,30,35,0.8571
+Data Engineer,Production engineering,20,23,0.8696
+Data Scientist / ML,No coding signal,14,23,0.6087
+Other / Mixed,No coding signal,110,132,0.8333
+Other / Mixed,Production engineering,19,132,0.1439

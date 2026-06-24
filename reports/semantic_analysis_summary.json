@@ -1,0 +1,28 @@
+{
+  "labelled_jobs": 244,
+  "skill_mentions": 156,
+  "document_labels": "data/private/annotations_expanded/processed_adjudicated/document_labels.csv",
+  "private_tables": {
+    "label_distribution": "data/private/semantic_analysis/label_distribution.csv",
+    "role_ai_signal": "data/private/semantic_analysis/role_ai_signal.csv",
+    "entry_ai_signal": "data/private/semantic_analysis/entry_ai_signal.csv",
+    "role_coding_signal": "data/private/semantic_analysis/role_coding_signal.csv",
+    "top_skills_by_role": "data/private/semantic_analysis/top_skills_by_role.csv"
+  },
+  "public_suppressed_tables": {
+    "label_distribution": "reports/semantic_label_distribution.csv",
+    "role_ai_signal": "reports/semantic_role_ai_signal.csv",
+    "entry_ai_signal": "reports/semantic_entry_ai_signal.csv",
+    "role_coding_signal": "reports/semantic_role_coding_signal.csv",
+    "top_skills_by_role": "reports/semantic_top_skills_by_role.csv"
+  },
+  "minimum_public_cell_size": 10,
+  "methods": [
+    "semantic label distribution",
+    "role by AI-signal crosstab",
+    "entry-fit by AI-signal crosstab",
+    "role by observed-coding-signal crosstab",
+    "skill frequency by semantic role"
+  ],
+  "privacy": "Full semantic tables remain private. Public tables are aggregate-only and suppress cells below the configured threshold."
+}

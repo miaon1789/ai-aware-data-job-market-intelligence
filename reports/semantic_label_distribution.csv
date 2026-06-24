@@ -1,0 +1,16 @@
+dimension,label,job_count,share_of_labelled_jobs
+ai_signal,No AI signal,163,0.668
+ai_signal,Explicit AI / ML system work,34,0.1393
+ai_signal,AI-adjacent but vague,26,0.1066
+ai_signal,Explicit GenAI / LLM tool,12,0.0492
+coding_signal,No coding signal,162,0.6639
+coding_signal,Production engineering,64,0.2623
+coding_signal,Automation / scripting,15,0.0615
+entry_fit,Experienced role,124,0.5082
+entry_fit,Unclear,73,0.2992
+entry_fit,Likely entry-level,47,0.1926
+role,Other / Mixed,132,0.541
+role,Data Analyst / BI,35,0.1434
+role,AI / Automation,31,0.127
+role,Data Engineer,23,0.0943
+role,Data Scientist / ML,23,0.0943

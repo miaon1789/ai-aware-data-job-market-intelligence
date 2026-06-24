@@ -1,0 +1,7 @@
+cluster_id,job_count,share_of_jobs,top_role,top_seniority,top_city
+3,117,0.2779,Data Engineer,Non-Junior,Sydney
+5,100,0.2375,Other / Mixed,Non-Junior,Sydney
+1,92,0.2185,Other / Mixed,Unclear,Sydney
+0,62,0.1473,Other / Mixed,Non-Junior,Sydney
+2,38,0.0903,Other / Mixed,Unclear,Sydney
+4,12,0.0285,Data Scientist,Non-Junior,Sydney

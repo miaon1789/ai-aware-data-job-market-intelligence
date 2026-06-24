@@ -1,0 +1,39 @@
+{
+  "rows": 244,
+  "rows_with_any_disagreement": 71,
+  "exact_agreement_share": 0.709,
+  "disagreement_by_dimension": {
+    "AI_SIGNAL": 34,
+    "CODING_SIGNAL": 20,
+    "ENTRY_FIT": 24,
+    "ROLE": 18
+  },
+  "top_disagreement_combinations": {
+    "AI_SIGNAL": 16,
+    "CODING_SIGNAL": 13,
+    "ENTRY_FIT": 13,
+    "ROLE": 8,
+    "ROLE + AI_SIGNAL": 6,
+    "ENTRY_FIT + AI_SIGNAL": 5,
+    "AI_SIGNAL + CODING_SIGNAL": 3,
+    "ROLE + ENTRY_FIT": 2,
+    "ENTRY_FIT + AI_SIGNAL + CODING_SIGNAL": 2,
+    "ENTRY_FIT + CODING_SIGNAL": 1
+  },
+  "confidence_distribution": {
+    "high": 124,
+    "low": 3,
+    "medium": 117
+  },
+  "disagreement_confidence_distribution": {
+    "high": 27,
+    "low": 1,
+    "medium": 43
+  },
+  "coding_likely_by_role_distribution": {
+    "Likely coding-intensive": 88,
+    "Likely low/no coding": 80,
+    "Likely some analytical scripting": 53,
+    "Unclear": 23
+  }
+}

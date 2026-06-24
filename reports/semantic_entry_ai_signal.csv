@@ -1,0 +1,7 @@
+entry_fit_label,ai_signal_label,job_count,row_total,share_within_row
+Experienced role,No AI signal,75,124,0.6048
+Experienced role,Explicit AI / ML system work,25,124,0.2016
+Experienced role,AI-adjacent but vague,14,124,0.1129
+Likely entry-level,No AI signal,39,47,0.8298
+Unclear,No AI signal,49,73,0.6712
+Unclear,AI-adjacent but vague,11,73,0.1507

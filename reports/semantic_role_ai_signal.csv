@@ -1,0 +1,7 @@
+role_label,ai_signal_label,job_count,row_total,share_within_row
+AI / Automation,Explicit AI / ML system work,18,31,0.5806
+Data Analyst / BI,No AI signal,34,35,0.9714
+Data Engineer,No AI signal,17,23,0.7391
+Data Scientist / ML,Explicit AI / ML system work,14,23,0.6087
+Other / Mixed,No AI signal,104,132,0.7879
+Other / Mixed,AI-adjacent but vague,18,132,0.1364
