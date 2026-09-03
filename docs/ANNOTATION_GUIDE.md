@@ -1,6 +1,13 @@
 # Human Annotation Guide
 
 The annotation package contains private job text. Run Doccano locally and do
+
+> **Doccano stores the advertisement text it is shown.** Running it in
+> Docker puts that text in the `doccano-db` volume, outside `data/private/`
+> and outside anything that walks the working tree. Include it when purging:
+> `python scripts/purge_private_data.py --purge-all --include-docker-volumes`.
+> Doccano also binds port 8000 by default, which collides with the retrieval
+> API; run one or the other, or remap one of them.
 not upload these files to a hosted annotation service or GitHub.
 
 Official Doccano JSONL workflow:

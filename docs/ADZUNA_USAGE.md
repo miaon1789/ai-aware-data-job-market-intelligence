@@ -148,6 +148,19 @@ python scripts/purge_private_data.py --purge-all
 python scripts/purge_private_data.py --purge-all --confirm
 ```
 
+A filesystem purge is not a complete purge. Annotating in Doccano copies the
+advertisement text into the container's own database, which lives in the
+`doccano-db` Docker volume and survives deleting this repository entirely. The
+dry run reports any such volume it finds; include them explicitly:
+
+```bash
+python scripts/purge_private_data.py --purge-all --include-docker-volumes
+python scripts/purge_private_data.py --purge-all --include-docker-volumes --confirm
+```
+
+This removes the `doccano` container and its volume. Export any annotations you
+still need first — the volume is the only copy of the Doccano projects.
+
 Also remove aggregate releases and deployed dashboards if required by the
 provider's then-current terms.
 
