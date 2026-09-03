@@ -23,6 +23,36 @@ dev = [
   "pytest>=8.3,<10",
   "ruff>=0.7,<1",
 ]
+# Retrieval, service and agent-tool layer. Kept optional so the data-mining
+# pipeline installs without pulling a deep-learning stack.
+retrieval = [
+  "fastapi>=0.115,<1",
+  "httpx>=0.27,<1",
+  "mcp>=1.2,<2",
+  # Chunk frames are stored as Parquet. This resolves transitively through
+  # Streamlit today, which means a dependency the retrieval path needs would
+  # disappear if the dashboard were ever dropped. Declare it where it is used.
+  "pyarrow>=14",
+  "sentence-transformers>=3.0,<6",
+  "uvicorn>=0.30,<1",
+]
+# Exactly what the container needs to run the pipeline, build indexes and serve
+# the API and MCP tools. Deliberately excludes the Streamlit dashboard stack
+# (streamlit, plotly and their transitive pydeck/altair), which adds ~130 MB to
+# an image that never renders a dashboard. tests/test_docker.py asserts this
+# stays a subset of the full dependency set so the two cannot drift.
+service = [
+  "duckdb>=1.1,<2",
+  "fastapi>=0.115,<1",
+  "joblib>=1.4,<2",
+  "mcp>=1.2,<2",
+  "pandas>=2.2,<4",
+  "pyarrow>=14",
+  "pydantic>=2.9,<3",
+  "scikit-learn>=1.5,<2",
+  "sentence-transformers>=3.0,<6",
+  "uvicorn>=0.30,<1",
+]
 
 [tool.setuptools.packages.find]
 where = ["src"]

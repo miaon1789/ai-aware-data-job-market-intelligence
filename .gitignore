@@ -28,5 +28,28 @@ data/processed/*
 !data/processed/.gitkeep
 data/synthetic/job_ads.csv
 
+# Retrieval artefacts. Chunks and embeddings are derived from licensed
+# advertisement text, so they live under data/private/ and never reach git.
+# data/synthetic/retrieval_corpus.csv is deliberately NOT ignored: it is the
+# fictional corpus that makes the pipeline reproducible.
+data/private/retrieval/
+
 *.duckdb
 *.joblib
+
+# Local planning documents, not part of the published project.
+RAG_PROJECT_BRIEF.md
+DOCKER_BRIEF.md
+
+# Local portfolio-only output.
+reports/figures/
+
+# Optional: keep Chinese personal workflow out of the public repo.
+docs/JOB_SEARCH_WORKFLOW.zh-CN.md
+
+# Chinese/local planning docs.
+*.zh-CN.md
+RAG_PROJECT_BRIEF.md
+DOCKER_BRIEF.md
+docs/*_BRIEF.md
+docs/*_GUIDE.md

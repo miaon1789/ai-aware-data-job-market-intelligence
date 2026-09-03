@@ -1,0 +1,43 @@
+# Local-only deployment. The API binds inside the container and is published to
+# 127.0.0.1 only: the index it serves is built from licensed advertisement text
+# that must not be exposed on a network interface.
+
+services:
+  # One-shot: chunk the corpus and build both indexes into a named volume, then
+  # exit. The API waits for it to complete successfully.
+  build-index:
+    build:
+      context: .
+      target: runtime
+    command: >
+      sh -c "python scripts/build_chunks.py --chunk-tokens 512 &&
+             python scripts/build_retrieval_index.py --embedding-model BAAI/bge-small-en-v1.5"
+    volumes:
+      - ./data/private:/app/data/private
+    env_file: [.env]
+    environment:
+      RETRIEVAL_ROOT: /app/data/private/retrieval
+
+  api:
+    build:
+      context: .
+      target: runtime
+    depends_on:
+      build-index:
+        condition: service_completed_successfully
+    # Loopback only. Changing this to 8000:8000 would publish the corpus.
+    ports: ["127.0.0.1:8000:8000"]
+    volumes:
+      - ./data/private:/app/data/private:ro
+    env_file: [.env]
+    environment:
+      RETRIEVAL_ROOT: /app/data/private/retrieval
+    # Latency figures in the README are measured under this limit, which is
+    # what makes them a reproducible measurement rather than a property of the
+    # machine they happened to be taken on.
+    deploy:
+      resources:
+        limits:
+          cpus: "2.0"
+          memory: 4g
+    restart: unless-stopped

@@ -14,10 +14,94 @@ jobs:
           python-version: "3.12"
           cache: pip
       - name: Install
-        run: python -m pip install -e ".[dev]"
+        # The API and retrieval tests import fastapi and write Parquet, both of
+        # which live in the retrieval extra rather than dev.
+        run: python -m pip install -e ".[dev,retrieval]"
       - name: Lint
         run: ruff check .
       - name: Test
         run: pytest -q
       - name: Run pipeline
         run: python scripts/run_pipeline.py
+
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+
+      - name: Build image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          load: true
+          tags: job-market-intelligence:ci
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Report image size
+        run: |
+          # Deliberately NOT `docker image inspect --format '{{.Size}}'`: under
+          # the containerd image store that returns the compressed content size,
+          # which is roughly a quarter of the unpacked size and would make this
+          # budget check silently meaningless. Sum the layers instead.
+          uncompressed=$(docker history job-market-intelligence:ci             --format '{{.Size}}' --no-trunc |             awk '/GB$/{s+=$1*1000}/MB$/{s+=$1}/kB$/{s+=$1/1000}END{printf "%d", s}')
+          compressed=$(docker save job-market-intelligence:ci | wc -c)
+          echo "uncompressed: ${uncompressed} MB"
+          echo "compressed  : $((compressed / 1000000)) MB"
+          # 1.6 GB: the image measures 1.54 GB, so this catches a regression
+          # without pretending the brief's 1.5 GB target is met. See the README's
+          # Deployment section for why 1.5 GB needs an ONNX backend. A CUDA torch
+          # build would blow straight through this, which is the real guard.
+          test "$uncompressed" -lt 1600 || { echo "image exceeds 1.6 GB"; exit 1; }
+
+      - name: torch is the CPU-only build
+        run: |
+          docker run --rm --entrypoint python job-market-intelligence:ci -c '
+          import torch
+          assert torch.version.cuda is None, "CUDA build leaked into the image"
+          print("torch", torch.__version__)'
+          test -z "$(docker run --rm --entrypoint sh job-market-intelligence:ci -c             'find /opt/venv -iname "*nvidia*" -o -iname "libcud*" | head -1')"             || { echo "NVIDIA libraries present"; exit 1; }
+          echo "no NVIDIA libraries in image"
+
+      - name: No licensed data in the image
+        run: |
+          docker run --rm --entrypoint sh job-market-intelligence:ci -c '
+            ! test -e /app/data/private &&
+            ! test -e /app/data/raw &&
+            ! test -e /app/data/processed &&
+            ! test -e /app/.env &&
+            test -f /app/data/synthetic/retrieval_corpus.csv'
+          echo "no private data present"
+
+      - name: Runs as non-root
+        run: |
+          uid=$(docker run --rm --entrypoint id job-market-intelligence:ci -u)
+          test "$uid" != "0" || { echo "container runs as root"; exit 1; }
+          echo "uid: $uid"
+
+      - name: Models and DuckDB FTS load with no network
+        run: |
+          docker run --rm --network none --entrypoint python job-market-intelligence:ci -c '
+          from job_market_intelligence.retrieval.embedding import ChunkEncoder
+          from job_market_intelligence.retrieval.rerank import CrossEncoderReranker
+          import duckdb
+          ChunkEncoder().encode(["offline smoke test"], is_query=True)
+          CrossEncoderReranker().rerank("q", [("c", "text")], top_k=1)
+          duckdb.connect().execute("INSTALL fts; LOAD fts;")
+          print("models and fts extension load offline")'
+
+      - name: Full pipeline runs offline on the synthetic corpus
+        run: |
+          mkdir -p offline-data
+          docker run --rm --network none -v "$PWD/offline-data:/app/data/private" \
+            --entrypoint sh job-market-intelligence:ci -c '
+            set -e
+            python scripts/run_pipeline.py --input data/synthetic/retrieval_corpus.csv \
+              --output-dir data/private/retrieval \
+              --reports-dir data/private/retrieval/reports --max-age-days 3650 >/dev/null
+            python scripts/build_chunks.py --jobs data/private/retrieval/jobs_clean.csv \
+              --chunk-tokens 512 >/dev/null
+            python scripts/build_retrieval_index.py \
+              --embedding-model BAAI/bge-small-en-v1.5 >/dev/null
+            echo "chunks and both indexes built with no network"'

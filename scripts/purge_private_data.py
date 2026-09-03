@@ -1,15 +1,31 @@
 #!/usr/bin/env python3
-"""Review or delete expired private data under data/private."""
+"""Review or delete expired private data.
+
+Covers two stores, because private advertisement text lives in both. The
+filesystem under `data/private/` is the obvious one. The other is the Docker
+volume backing the Doccano annotation server: annotating in Doccano copies the
+advertisement text into its database, where it survives deleting the repository
+and is invisible to anything that walks the working tree. `docs/ADZUNA_USAGE.md`
+promises a complete purge on API termination, and that promise is not kept by
+a filesystem sweep alone.
+"""
 
 from __future__ import annotations
 
 import argparse
 import json
+import shutil
+import subprocess
 import time
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_PRIVATE_ROOT = ROOT / "data/private"
+
+# Docker volumes that hold advertisement text copied out of data/private.
+# Doccano stores every annotated document in its own SQLite database.
+PRIVATE_DOCKER_VOLUMES = ("doccano-db",)
+PRIVATE_DOCKER_CONTAINERS = ("doccano",)
 
 
 def expired_files(
@@ -32,6 +48,48 @@ def expired_files(
     )
 
 
+def _docker_available() -> bool:
+    if shutil.which("docker") is None:
+        return False
+    probe = subprocess.run(  # noqa: S603
+        ["docker", "info", "--format", "{{.ServerVersion}}"],
+        capture_output=True,
+        text=True,
+    )
+    return probe.returncode == 0
+
+
+def existing_private_volumes() -> list[str]:
+    """Names of known private Docker volumes that are actually present."""
+
+    if not _docker_available():
+        return []
+    listed = subprocess.run(  # noqa: S603
+        ["docker", "volume", "ls", "--format", "{{.Name}}"],
+        capture_output=True,
+        text=True,
+    )
+    present = set(listed.stdout.split())
+    return [name for name in PRIVATE_DOCKER_VOLUMES if name in present]
+
+
+def remove_private_volumes(volumes: list[str]) -> list[str]:
+    """Remove the named volumes and any container still holding them."""
+
+    removed: list[str] = []
+    for container in PRIVATE_DOCKER_CONTAINERS:
+        subprocess.run(  # noqa: S603
+            ["docker", "rm", "-f", container], capture_output=True, text=True
+        )
+    for volume in volumes:
+        result = subprocess.run(  # noqa: S603
+            ["docker", "volume", "rm", volume], capture_output=True, text=True
+        )
+        if result.returncode == 0:
+            removed.append(volume)
+    return removed
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--private-root", type=Path, default=DEFAULT_PRIVATE_ROOT)
@@ -46,6 +104,15 @@ def main() -> None:
         action="store_true",
         help="Actually delete selected files; without this flag the command is a dry run",
     )
+    parser.add_argument(
+        "--include-docker-volumes",
+        action="store_true",
+        help=(
+            "Also remove Docker volumes holding annotated advertisement text "
+            "(the Doccano database). Required for the complete purge described "
+            "in docs/ADZUNA_USAGE.md."
+        ),
+    )
     args = parser.parse_args()
 
     private_root = args.private_root.resolve()
@@ -58,7 +125,11 @@ def main() -> None:
         retention_days=args.retention_days,
         purge_all=args.purge_all,
     )
+    private_volumes = existing_private_volumes()
+    removed_volumes: list[str] = []
     deleted = 0
+    if args.confirm and args.include_docker_volumes:
+        removed_volumes = remove_private_volumes(private_volumes)
     if args.confirm:
         for path in selected:
             path.unlink()
@@ -83,6 +154,17 @@ def main() -> None:
                 "selected_files": len(selected),
                 "deleted_files": deleted,
                 "files": [str(path.relative_to(private_root)) for path in selected],
+                "private_docker_volumes_present": private_volumes,
+                "private_docker_volumes_removed": removed_volumes,
+                "docker_volume_note": (
+                    ""
+                    if not private_volumes or args.include_docker_volumes
+                    else (
+                        "Advertisement text is also stored in the Docker volumes "
+                        "listed above. A filesystem purge does not remove it; "
+                        "pass --include-docker-volumes to include them."
+                    )
+                ),
             },
             indent=2,
         )
