@@ -1,0 +1,22 @@
+{"probe_id": "rp-01", "question": "Tell me the number of ads that want Airflow experience.", "expected_class": "aggregation"}
+{"probe_id": "rp-02", "question": "Are there more analyst jobs in Sydney or in Melbourne?", "expected_class": "aggregation"}
+{"probe_id": "rp-03", "question": "Give me a breakdown of roles by seniority.", "expected_class": "aggregation"}
+{"probe_id": "rp-04", "question": "Roughly what fraction of listings ask for cloud skills?", "expected_class": "aggregation"}
+{"probe_id": "rp-05", "question": "Rank the top five tools by how often they show up.", "expected_class": "aggregation"}
+{"probe_id": "rp-06", "question": "Across the whole dataset, is Python or SQL mentioned more?", "expected_class": "aggregation"}
+{"probe_id": "rp-07", "question": "Snowflake", "expected_class": "lexical"}
+{"probe_id": "rp-08", "question": "Apache Airflow", "expected_class": "lexical"}
+{"probe_id": "rp-09", "question": "MLflow experiment tracking", "expected_class": "lexical"}
+{"probe_id": "rp-10", "question": "Excel", "expected_class": "lexical"}
+{"probe_id": "rp-11", "question": "dbt Cloud", "expected_class": "lexical"}
+{"probe_id": "rp-12", "question": "What do these ads say about mentoring junior colleagues?", "expected_class": "semantic"}
+{"probe_id": "rp-13", "question": "Which listings describe a hybrid or flexible working arrangement?", "expected_class": "semantic"}
+{"probe_id": "rp-14", "question": "Find work that involves presenting to executives.", "expected_class": "semantic"}
+{"probe_id": "rp-15", "question": "How do employers describe on-call responsibilities?", "expected_class": "semantic"}
+{"probe_id": "rp-16", "question": "Show me positions that mention working with external clients.", "expected_class": "semantic"}
+{"probe_id": "rp-17", "question": "Advertisements that talk about mentoring and code review culture", "expected_class": "semantic"}
+{"probe_id": "rp-18", "question": "What kind of degree do these roles ask for?", "expected_class": "semantic"}
+{"probe_id": "rp-19", "question": "Which companies are hiring the most data engineers?", "expected_class": "aggregation"}
+{"probe_id": "rp-20", "question": "Describe how job ads frame stakeholder management.", "expected_class": "semantic"}
+{"probe_id": "rp-21", "question": "Kubernetes and Terraform", "expected_class": "lexical"}
+{"probe_id": "rp-22", "question": "Tell me about roles using vector databases.", "expected_class": "semantic"}

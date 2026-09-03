@@ -1,0 +1,18 @@
+{"probe_id": "rt-01", "question": "What percentage of listings are remote-friendly?", "expected_class": "aggregation"}
+{"probe_id": "rt-02", "question": "Do more ads ask for AWS than for Azure?", "expected_class": "aggregation"}
+{"probe_id": "rt-03", "question": "Summarise the spread of seniority levels in the data.", "expected_class": "aggregation"}
+{"probe_id": "rt-04", "question": "Out of everything you have, how many are graduate roles?", "expected_class": "aggregation"}
+{"probe_id": "rt-05", "question": "Tally up the ads referencing Docker.", "expected_class": "aggregation"}
+{"probe_id": "rt-06", "question": "Which skill dominates the engineering postings?", "expected_class": "aggregation"}
+{"probe_id": "rt-07", "question": "Redis", "expected_class": "lexical"}
+{"probe_id": "rt-08", "question": "Databricks Unity Catalog", "expected_class": "lexical"}
+{"probe_id": "rt-09", "question": "Great Expectations", "expected_class": "lexical"}
+{"probe_id": "rt-10", "question": "Sagemaker", "expected_class": "lexical"}
+{"probe_id": "rt-11", "question": "What responsibilities do these ads give to junior hires?", "expected_class": "semantic"}
+{"probe_id": "rt-12", "question": "Find listings that emphasise writing documentation.", "expected_class": "semantic"}
+{"probe_id": "rt-13", "question": "How do employers word their expectations around teamwork?", "expected_class": "semantic"}
+{"probe_id": "rt-14", "question": "Positions involving customer-facing analytics work", "expected_class": "semantic"}
+{"probe_id": "rt-15", "question": "Roles where someone would own a data warehouse end to end", "expected_class": "semantic"}
+{"probe_id": "rt-16", "question": "What benefits are commonly advertised?", "expected_class": "semantic"}
+{"probe_id": "rt-17", "question": "Show ads that mention security or compliance duties.", "expected_class": "semantic"}
+{"probe_id": "rt-18", "question": "Describe the interview process these companies outline.", "expected_class": "semantic"}

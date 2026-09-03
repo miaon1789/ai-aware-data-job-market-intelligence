@@ -1,0 +1,30 @@
+{
+  "configurations": 11,
+  "queries": 73,
+  "corpus_chunks": {
+    "512": 2416,
+    "256": 2890,
+    "1024": 2374
+  },
+  "baseline_config": "chunk512|hybrid|bge-small-en-v1.5|rerank=off",
+  "resolution_limit_recall_at_10": 0.0759,
+  "heuristic_routing": {
+    "queries": 73,
+    "agreement_with_golden_classes": 0.8356,
+    "caveat": "The router was written against these queries, so this is an upper bound. eval/golden/routing_heldout.jsonl is the held-out estimate."
+  },
+  "routing_break_even": {
+    "metric": "ndcg@10",
+    "routed_perfect_router": 0.5775,
+    "routed_always_wrong": 0.3136,
+    "fusion": 0.5456,
+    "break_even_router_accuracy": 0.8794
+  },
+  "aggregation_recall_ceiling": 0.1779,
+  "reports": [
+    "reports/retrieval/ablation_by_query_class.csv",
+    "reports/retrieval/ablation_latency.csv",
+    "reports/retrieval/ablation_lexical_dictionary_bias.csv",
+    "reports/retrieval/ablation_overall.csv"
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "configuration": {
+    "label": "chunk512|hybrid|bge-small-en-v1.5|rerank=off",
+    "chunk_tokens": 512,
+    "overlap_ratio": 0.1,
+    "mode": "hybrid",
+    "embedding_model": "BAAI/bge-small-en-v1.5",
+    "rrf_k": 60,
+    "rerank": false,
+    "rerank_model": "",
+    "retrieval_depth": 200,
+    "candidate_pool": 50,
+    "top_k": 10
+  },
+  "queries": 73,
+  "corpus_chunks": 2416,
+  "dense_index_megabytes": 3.54,
+  "stages": [
+    {
+      "stage": "query_encode",
+      "queries": 73,
+      "p50_ms": 18.1,
+      "p95_ms": 21.94,
+      "mean_ms": 17.52
+    },
+    {
+      "stage": "dense_scan",
+      "queries": 73,
+      "p50_ms": 0.33,
+      "p95_ms": 0.4,
+      "mean_ms": 0.35
+    },
+    {
+      "stage": "lexical_bm25",
+      "queries": 73,
+      "p50_ms": 28.29,
+      "p95_ms": 32.19,
+      "mean_ms": 27.07
+    },
+    {
+      "stage": "fusion",
+      "queries": 73,
+      "p50_ms": 0.16,
+      "p95_ms": 0.22,
+      "mean_ms": 0.15
+    },
+    {
+      "stage": "rerank",
+      "queries": 73,
+      "p50_ms": 334.82,
+      "p95_ms": 408.23,
+      "mean_ms": 338.03
+    }
+  ],
+  "retrieval_mean_ms_without_rerank": 45.09,
+  "rerank_mean_ms": 338.03,
+  "rerank_share_of_total": 0.882,
+  "embedding_cache": {
+    "note": "Cold encodes the query through the transformer; warm is a repeat of the same query served from the on-disk vector cache.",
+    "cold_mean_ms": 17.52,
+    "warm_mean_ms": 0.041,
+    "speedup": 423.7
+  },
+  "answer_synthesis": {
+    "passages_per_answer": 5,
+    "mean_input_tokens": 1187,
+    "p95_input_tokens": 1794,
+    "assumed_output_tokens": 250,
+    "usd_per_answer": 0.00731,
+    "usd_per_thousand_answers": 7.31,
+    "pricing_assumption_usd_per_million": {
+      "input": 3.0,
+      "output": 15.0
+    },
+    "note": "Token counts are the four-characters-per-token approximation used throughout the chunker, not a tokeniser count. Reranking adds no token cost: the cross-encoder runs locally."
+  }
+}

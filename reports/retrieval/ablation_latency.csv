@@ -1,0 +1,12 @@
+config,label,chunk_tokens,overlap_ratio,mode,embedding_model,rrf_k,rerank,rerank_model,retrieval_depth,candidate_pool,top_k,latency_p50_ms,latency_p95_ms,latency_mean_ms
+chunk512|hybrid|bge-small-en-v1.5|rerank=off,chunk512|hybrid|bge-small-en-v1.5|rerank=off,512,0.1,hybrid,BAAI/bge-small-en-v1.5,60,False,,200,50,10,32.62,54.31,195.11
+chunk256|hybrid|bge-small-en-v1.5|rerank=off,chunk256|hybrid|bge-small-en-v1.5|rerank=off,256,0.1,hybrid,BAAI/bge-small-en-v1.5,60,False,,200,50,10,32.38,50.54,108.05
+chunk1024|hybrid|bge-small-en-v1.5|rerank=off,chunk1024|hybrid|bge-small-en-v1.5|rerank=off,1024,0.1,hybrid,BAAI/bge-small-en-v1.5,60,False,,200,50,10,32.23,50.55,108.11
+chunk512|dense|bge-small-en-v1.5|rerank=off,chunk512|dense|bge-small-en-v1.5|rerank=off,512,0.1,dense,BAAI/bge-small-en-v1.5,60,False,,200,50,10,13.85,31.05,91.92
+chunk512|lexical|none|rerank=off,chunk512|lexical|none|rerank=off,512,0.1,lexical,,60,False,,200,50,10,29.41,32.4,26.27
+chunk512|routed|bge-small-en-v1.5|rerank=off,chunk512|routed|bge-small-en-v1.5|rerank=off,512,0.1,routed,BAAI/bge-small-en-v1.5,60,False,,200,50,10,19.22,34.47,99.22
+chunk512|hybrid|all-mpnet-base-v2|rerank=off,chunk512|hybrid|all-mpnet-base-v2|rerank=off,512,0.1,hybrid,sentence-transformers/all-mpnet-base-v2,60,False,,200,50,10,62.46,71.82,141.82
+chunk512|dense|bge-small-en-v1.5|rerank=on,chunk512|dense|bge-small-en-v1.5|rerank=on,512,0.1,dense,BAAI/bge-small-en-v1.5,60,True,cross-encoder/ms-marco-MiniLM-L-6-v2,200,50,10,355.83,455.29,544.71
+chunk512|lexical|none|rerank=on,chunk512|lexical|none|rerank=on,512,0.1,lexical,,60,True,cross-encoder/ms-marco-MiniLM-L-6-v2,200,50,10,371.25,446.45,426.3
+chunk512|hybrid|bge-small-en-v1.5|rerank=on,chunk512|hybrid|bge-small-en-v1.5|rerank=on,512,0.1,hybrid,BAAI/bge-small-en-v1.5,60,True,cross-encoder/ms-marco-MiniLM-L-6-v2,200,50,10,380.98,465.25,570.78
+chunk512|routed|bge-small-en-v1.5|rerank=on,chunk512|routed|bge-small-en-v1.5|rerank=on,512,0.1,routed,BAAI/bge-small-en-v1.5,60,True,cross-encoder/ms-marco-MiniLM-L-6-v2,200,50,10,364.64,448.08,527.4

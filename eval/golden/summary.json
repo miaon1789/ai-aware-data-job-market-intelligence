@@ -1,0 +1,33 @@
+{
+  "queries": 73,
+  "corpus_documents": 705,
+  "labelled_documents": 244,
+  "by_class": {
+    "aggregation": {
+      "queries": 17,
+      "median_relevant_documents": 52.0,
+      "min_relevant_documents": 19,
+      "max_relevant_documents": 705
+    },
+    "lexical": {
+      "queries": 22,
+      "median_relevant_documents": 10.5,
+      "min_relevant_documents": 3,
+      "max_relevant_documents": 81
+    },
+    "mixed": {
+      "queries": 12,
+      "median_relevant_documents": 7.0,
+      "min_relevant_documents": 3,
+      "max_relevant_documents": 15
+    },
+    "semantic": {
+      "queries": 22,
+      "median_relevant_documents": 24.0,
+      "min_relevant_documents": 6,
+      "max_relevant_documents": 87
+    }
+  },
+  "queries_with_no_relevant_documents": [],
+  "published_relevance": "eval/golden/relevance_hashed.jsonl"
+}

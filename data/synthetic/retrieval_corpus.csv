@@ -1,0 +1,785 @@
+job_id,title,description,description_structured,city,company,posted_at,source,source_url,role_label,collection_query,collection_group,retrieved_at
+synthetic-000,Graduate Data Engineer,"About Harbour Metrics Harbour Metrics is a fictional retail analytics company created for testing this repository's retrieval pipeline. We are a team of roughly 250 people based in Sydney, and none of us exist. About the role You will join our data team in Sydney, reporting to the head of data. This advertisement is synthetic and describes no real vacancy. What you'll do - Schedule and monitor workloads in Airflow, and page-tune the alerts - Move ingestion from Fivetran onto in-house connectors where cost demands it - Model curated tables with dbt and review incoming pull requests - Build and maintain batch pipelines that land source systems into the warehouse Requirements - Experience operating Kafka or an equivalent streaming platform - Comfort with Terraform and deploying through CI - Three or more years writing production Python and SQL Nice to have - Exposure to Databricks and Unity Catalog - Prior work with Grafana or Datadog for pipeline observability What we offer - Employee share scheme after twelve months - Paid parental leave for all parents regardless of gender - Additional paid leave over the December shutdown Equal opportunity Harbour Metrics is an equal opportunity employer. We welcome applications from candidates of every background, and we will make reasonable adjustments at any stage of the process on request. We never ask candidates for payment, and we will only contact you from a harbourmetrics.example address.","About Harbour Metrics
+Harbour Metrics is a fictional retail analytics company created for testing this repository's retrieval pipeline. We are a team of roughly 250 people based in Sydney, and none of us exist.
+
+About the role
+You will join our data team in Sydney, reporting to the head of data. This advertisement is synthetic and describes no real vacancy.
+
+What you'll do
+- Schedule and monitor workloads in Airflow, and page-tune the alerts
+- Move ingestion from Fivetran onto in-house connectors where cost demands it
+- Model curated tables with dbt and review incoming pull requests
+- Build and maintain batch pipelines that land source systems into the warehouse
+
+Requirements
+- Experience operating Kafka or an equivalent streaming platform
+- Comfort with Terraform and deploying through CI
+- Three or more years writing production Python and SQL
+
+Nice to have
+- Exposure to Databricks and Unity Catalog
+- Prior work with Grafana or Datadog for pipeline observability
+
+What we offer
+- Employee share scheme after twelve months
+- Paid parental leave for all parents regardless of gender
+- Additional paid leave over the December shutdown
+
+Equal opportunity
+Harbour Metrics is an equal opportunity employer. We welcome applications from candidates of every background, and we will make reasonable adjustments at any stage of the process on request. We never ask candidates for payment, and we will only contact you from a harbourmetrics.example address.",Sydney,Harbour Metrics,2026-04-27,synthetic-corpus,,Data Engineer,synthetic,synthetic,2026-06-30
+synthetic-001,Business Intelligence Analyst,"About Wattle Models Wattle Models is a fictional insurance pricing company created for testing this repository's retrieval pipeline. We are a team of roughly 250 people based in Melbourne, and none of us exist. About the role You will join our data team in Melbourne, reporting to the head of data. This advertisement is synthetic and describes no real vacancy. What you'll do - Build and maintain Power BI dashboards used by the leadership group - Answer questions from the commercial team and explain what the numbers mean - Present findings to people with no technical background and agree next steps - Translate vague business questions into something a query can answer Requirements - Experience with Power BI, Tableau, Looker or Metabase - Clear written communication for a non-technical audience - Strong SQL and the judgement to know when a number looks wrong Nice to have - Experience running A/B tests and interpreting the results - Python for analysis, or a willingness to learn it here What we offer - Hybrid working, with two days a week in the office - A yearly budget for conferences and training - Additional paid leave over the December shutdown Equal opportunity Wattle Models is an equal opportunity employer. We welcome applications from candidates of every background, and we will make reasonable adjustments at any stage of the process on request. We never ask candidates for payment, and we will only contact you from a wattlemodels.example address.","About Wattle Models
+Wattle Models is a fictional insurance pricing company created for testing this repository's retrieval pipeline. We are a team of roughly 250 people based in Melbourne, and none of us exist.
+
+About the role
+You will join our data team in Melbourne, reporting to the head of data. This advertisement is synthetic and describes no real vacancy.
+
+What you'll do
+- Build and maintain Power BI dashboards used by the leadership group
+- Answer questions from the commercial team and explain what the numbers mean
+- Present findings to people with no technical background and agree next steps
+- Translate vague business questions into something a query can answer
+
+Requirements
+- Experience with Power BI, Tableau, Looker or Metabase
+- Clear written communication for a non-technical audience
+- Strong SQL and the judgement to know when a number looks wrong
+
+Nice to have
+- Experience running A/B tests and interpreting the results
+- Python for analysis, or a willingness to learn it here
+
+What we offer
+- Hybrid working, with two days a week in the office
+- A yearly budget for conferences and training
+- Additional paid leave over the December shutdown
+
+Equal opportunity
+Wattle Models is an equal opportunity employer. We welcome applications from candidates of every background, and we will make reasonable adjustments at any stage of the process on request. We never ask candidates for payment, and we will only contact you from a wattlemodels.example address.",Melbourne,Wattle Models,2026-06-20,synthetic-corpus,,,synthetic,synthetic,2026-06-30
+synthetic-002,Applied Scientist,"About Koala Freight Koala Freight is a fictional logistics company created for testing this repository's retrieval pipeline. We are a team of roughly 250 people based in Sydney, and none of us exist. About the role You will join our data team in Sydney, reporting to the head of data. This advertisement is synthetic and describes no real vacancy. What you'll do - Explain model behaviour to stakeholders who will act on its output - Design and run controlled experiments to establish whether a change helped - Train, evaluate and monitor models that run in production - Track experiments with MLflow so results can be reproduced months later Requirements - Experience taking a model past the notebook and into a service - Solid grounding in statistics and experimental design - Python with scikit-learn, PyTorch or TensorFlow Nice to have - Familiarity with Sagemaker, Vertex AI or Databricks ML - Experience with large language models and retrieval-augmented generation What we offer - A yearly budget for conferences and training - Hybrid working, with two days a week in the office - Additional paid leave over the December shutdown Equal opportunity Koala Freight is an equal opportunity employer. We welcome applications from candidates of every background, and we will make reasonable adjustments at any stage of the process on request. We never ask candidates for payment, and we will only contact you from a koalafreight.example address.","About Koala Freight
+Koala Freight is a fictional logistics company created for testing this repository's retrieval pipeline. We are a team of roughly 250 people based in Sydney, and none of us exist.
+
+About the role
+You will join our data team in Sydney, reporting to the head of data. This advertisement is synthetic and describes no real vacancy.
+
+What you'll do
+- Explain model behaviour to stakeholders who will act on its output
+- Design and run controlled experiments to establish whether a change helped
+- Train, evaluate and monitor models that run in production
+- Track experiments with MLflow so results can be reproduced months later
+
+Requirements
+- Experience taking a model past the notebook and into a service
+- Solid grounding in statistics and experimental design
+- Python with scikit-learn, PyTorch or TensorFlow
+
+Nice to have
+- Familiarity with Sagemaker, Vertex AI or Databricks ML
+- Experience with large language models and retrieval-augmented generation
+
+What we offer
+- A yearly budget for conferences and training
+- Hybrid working, with two days a week in the office
+- Additional paid leave over the December shutdown
+
+Equal opportunity
+Koala Freight is an equal opportunity employer. We welcome applications from candidates of every background, and we will make reasonable adjustments at any stage of the process on request. We never ask candidates for payment, and we will only contact you from a koalafreight.example address.",Sydney,Koala Freight,2026-05-14,synthetic-corpus,,,synthetic,synthetic,2026-06-30
+synthetic-003,AI Solutions Engineer,"About Banksia Health Banksia Health is a fictional clinical research company created for testing this repository's retrieval pipeline. We are a team of roughly 40 people based in Melbourne, and none of us exist. About the role You will join our data team in Melbourne, reporting to the head of data. This advertisement is synthetic and describes no real vacancy. What you'll do - Write evaluation sets so a prompt change can be judged rather than guessed at - Design retrieval pipelines over internal documents and measure their quality - Build assistants that take actions on behalf of internal teams - Replace repetitive manual processes with reliable automated workflows Requirements - Experience with LangChain, LlamaIndex or an equivalent framework - Prompt engineering grounded in evaluation rather than intuition - Understanding of vector search, chunking and reranking trade-offs Nice to have - Experience running background jobs and queues in production - Exposure to Zapier, n8n or another workflow automation tool What we offer - Hybrid working, with two days a week in the office - A yearly budget for conferences and training - Paid parental leave for all parents regardless of gender Equal opportunity Banksia Health is an equal opportunity employer. We welcome applications from candidates of every background, and we will make reasonable adjustments at any stage of the process on request. We never ask candidates for payment, and we will only contact you from a banksiahealth.example address.","About Banksia Health
+Banksia Health is a fictional clinical research company created for testing this repository's retrieval pipeline. We are a team of roughly 40 people based in Melbourne, and none of us exist.
+
+About the role
+You will join our data team in Melbourne, reporting to the head of data. This advertisement is synthetic and describes no real vacancy.
+
+What you'll do
+- Write evaluation sets so a prompt change can be judged rather than guessed at
+- Design retrieval pipelines over internal documents and measure their quality
+- Build assistants that take actions on behalf of internal teams
+- Replace repetitive manual processes with reliable automated workflows
+
+Requirements
+- Experience with LangChain, LlamaIndex or an equivalent framework
+- Prompt engineering grounded in evaluation rather than intuition
+- Understanding of vector search, chunking and reranking trade-offs
+
+Nice to have
+- Experience running background jobs and queues in production
+- Exposure to Zapier, n8n or another workflow automation tool
+
+What we offer
+- Hybrid working, with two days a week in the office
+- A yearly budget for conferences and training
+- Paid parental leave for all parents regardless of gender
+
+Equal opportunity
+Banksia Health is an equal opportunity employer. We welcome applications from candidates of every background, and we will make reasonable adjustments at any stage of the process on request. We never ask candidates for payment, and we will only contact you from a banksiahealth.example address.",Melbourne,Banksia Health,2026-04-14,synthetic-corpus,,AI / Automation,synthetic,synthetic,2026-06-30
+synthetic-004,Graduate Data Engineer,"About Laneway Energy Laneway Energy is a fictional renewable energy company created for testing this repository's retrieval pipeline. We are a team of roughly 400 people based in Sydney, and none of us exist. About the role You will join our data team in Sydney, reporting to the head of data. This advertisement is synthetic and describes no real vacancy. What you'll do - Move ingestion from Fivetran onto in-house connectors where cost demands it - Model curated tables with dbt and review incoming pull requests - Partner with analysts to agree contracts for the tables they depend on - Schedule and monitor workloads in Airflow, and page-tune the alerts Requirements - Comfort with Terraform and deploying through CI - Experience operating Kafka or an equivalent streaming platform - Three or more years writing production Python and SQL Nice to have - Familiarity with Kubernetes and container-based deployment - Exposure to Databricks and Unity Catalog What we offer - Paid parental leave for all parents regardless of gender - A yearly budget for conferences and training - Additional paid leave over the December shutdown Equal opportunity Laneway Energy is an equal opportunity employer. We welcome applications from candidates of every background, and we will make reasonable adjustments at any stage of the process on request. We never ask candidates for payment, and we will only contact you from a lanewayenergy.example address.","About Laneway Energy
+Laneway Energy is a fictional renewable energy company created for testing this repository's retrieval pipeline. We are a team of roughly 400 people based in Sydney, and none of us exist.
+
+About the role
+You will join our data team in Sydney, reporting to the head of data. This advertisement is synthetic and describes no real vacancy.
+
+What you'll do
+- Move ingestion from Fivetran onto in-house connectors where cost demands it
+- Model curated tables with dbt and review incoming pull requests
+- Partner with analysts to agree contracts for the tables they depend on
+- Schedule and monitor workloads in Airflow, and page-tune the alerts
+
+Requirements
+- Comfort with Terraform and deploying through CI
+- Experience operating Kafka or an equivalent streaming platform
+- Three or more years writing production Python and SQL
+
+Nice to have
+- Familiarity with Kubernetes and container-based deployment
+- Exposure to Databricks and Unity Catalog
+
+What we offer
+- Paid parental leave for all parents regardless of gender
+- A yearly budget for conferences and training
+- Additional paid leave over the December shutdown
+
+Equal opportunity
+Laneway Energy is an equal opportunity employer. We welcome applications from candidates of every background, and we will make reasonable adjustments at any stage of the process on request. We never ask candidates for payment, and we will only contact you from a lanewayenergy.example address.",Sydney,Laneway Energy,2026-06-29,synthetic-corpus,,,synthetic,synthetic,2026-06-30
+synthetic-005,Data Analyst,"About Quay Financial Quay Financial is a fictional payments company created for testing this repository's retrieval pipeline. We are a team of roughly 120 people based in Melbourne, and none of us exist. About the role You will join our data team in Melbourne, reporting to the head of data. This advertisement is synthetic and describes no real vacancy. What you'll do - Answer questions from the commercial team and explain what the numbers mean - Present findings to people with no technical background and agree next steps - Translate vague business questions into something a query can answer - Build and maintain Power BI dashboards used by the leadership group Requirements - Comfort working with incomplete data and saying so out loud - Clear written communication for a non-technical audience - Strong SQL and the judgement to know when a number looks wrong Nice to have - Exposure to dbt for managing shared metric definitions - Python for analysis, or a willingness to learn it here What we offer - A yearly budget for conferences and training - Paid parental leave for all parents regardless of gender - Hybrid working, with two days a week in the office Equal opportunity Quay Financial is an equal opportunity employer. We welcome applications from candidates of every background, and we will make reasonable adjustments at any stage of the process on request. We never ask candidates for payment, and we will only contact you from a quayfinancial.example address.","About Quay Financial
+Quay Financial is a fictional payments company created for testing this repository's retrieval pipeline. We are a team of roughly 120 people based in Melbourne, and none of us exist.
+
+About the role
+You will join our data team in Melbourne, reporting to the head of data. This advertisement is synthetic and describes no real vacancy.
+
+What you'll do
+- Answer questions from the commercial team and explain what the numbers mean
+- Present findings to people with no technical background and agree next steps
+- Translate vague business questions into something a query can answer
+- Build and maintain Power BI dashboards used by the leadership group
+
+Requirements
+- Comfort working with incomplete data and saying so out loud
+- Clear written communication for a non-technical audience
+- Strong SQL and the judgement to know when a number looks wrong
+
+Nice to have
+- Exposure to dbt for managing shared metric definitions
+- Python for analysis, or a willingness to learn it here
+
+What we offer
+- A yearly budget for conferences and training
+- Paid parental leave for all parents regardless of gender
+- Hybrid working, with two days a week in the office
+
+Equal opportunity
+Quay Financial is an equal opportunity employer. We welcome applications from candidates of every background, and we will make reasonable adjustments at any stage of the process on request. We never ask candidates for payment, and we will only contact you from a quayfinancial.example address.",Melbourne,Quay Financial,2026-04-29,synthetic-corpus,,,synthetic,synthetic,2026-06-30
+synthetic-006,Data Scientist,"About Southern Grid Southern Grid is a fictional utilities company created for testing this repository's retrieval pipeline. We are a team of roughly 400 people based in Sydney, and none of us exist. About the role You will join our data team in Sydney, reporting to the head of data. This advertisement is synthetic and describes no real vacancy. What you'll do - Explain model behaviour to stakeholders who will act on its output - Design and run controlled experiments to establish whether a change helped - Track experiments with MLflow so results can be reproduced months later - Train, evaluate and monitor models that run in production Requirements - SQL fluent enough to build your own features - Solid grounding in statistics and experimental design - Experience taking a model past the notebook and into a service Nice to have - Familiarity with Sagemaker, Vertex AI or Databricks ML - Experience with large language models and retrieval-augmented generation What we offer - Hybrid working, with two days a week in the office - Additional paid leave over the December shutdown - Paid parental leave for all parents regardless of gender Equal opportunity Southern Grid is an equal opportunity employer. We welcome applications from candidates of every background, and we will make reasonable adjustments at any stage of the process on request. We never ask candidates for payment, and we will only contact you from a southerngrid.example address.","About Southern Grid
+Southern Grid is a fictional utilities company created for testing this repository's retrieval pipeline. We are a team of roughly 400 people based in Sydney, and none of us exist.
+
+About the role
+You will join our data team in Sydney, reporting to the head of data. This advertisement is synthetic and describes no real vacancy.
+
+What you'll do
+- Explain model behaviour to stakeholders who will act on its output
+- Design and run controlled experiments to establish whether a change helped
+- Track experiments with MLflow so results can be reproduced months later
+- Train, evaluate and monitor models that run in production
+
+Requirements
+- SQL fluent enough to build your own features
+- Solid grounding in statistics and experimental design
+- Experience taking a model past the notebook and into a service
+
+Nice to have
+- Familiarity with Sagemaker, Vertex AI or Databricks ML
+- Experience with large language models and retrieval-augmented generation
+
+What we offer
+- Hybrid working, with two days a week in the office
+- Additional paid leave over the December shutdown
+- Paid parental leave for all parents regardless of gender
+
+Equal opportunity
+Southern Grid is an equal opportunity employer. We welcome applications from candidates of every background, and we will make reasonable adjustments at any stage of the process on request. We never ask candidates for payment, and we will only contact you from a southerngrid.example address.",Sydney,Southern Grid,2026-04-23,synthetic-corpus,,Data Scientist,synthetic,synthetic,2026-06-30
+synthetic-007,Automation Engineer,"About Bluegum Media Bluegum Media is a fictional streaming company created for testing this repository's retrieval pipeline. We are a team of roughly 120 people based in Melbourne, and none of us exist. About the role You will join our data team in Melbourne, reporting to the head of data. This advertisement is synthetic and describes no real vacancy. What you'll do - Replace repetitive manual processes with reliable automated workflows - Build assistants that take actions on behalf of internal teams - Write evaluation sets so a prompt change can be judged rather than guessed at - Design retrieval pipelines over internal documents and measure their quality Requirements - Strong Python and comfort designing and consuming APIs - Prompt engineering grounded in evaluation rather than intuition - Experience with LangChain, LlamaIndex or an equivalent framework Nice to have - Exposure to Zapier, n8n or another workflow automation tool - Familiarity with TypeScript for the surrounding application layer What we offer - Employee share scheme after twelve months - Hybrid working, with two days a week in the office - A yearly budget for conferences and training Equal opportunity Bluegum Media is an equal opportunity employer. We welcome applications from candidates of every background, and we will make reasonable adjustments at any stage of the process on request. We never ask candidates for payment, and we will only contact you from a bluegummedia.example address.","About Bluegum Media
+Bluegum Media is a fictional streaming company created for testing this repository's retrieval pipeline. We are a team of roughly 120 people based in Melbourne, and none of us exist.
+
+About the role
+You will join our data team in Melbourne, reporting to the head of data. This advertisement is synthetic and describes no real vacancy.
+
+What you'll do
+- Replace repetitive manual processes with reliable automated workflows
+- Build assistants that take actions on behalf of internal teams
+- Write evaluation sets so a prompt change can be judged rather than guessed at
+- Design retrieval pipelines over internal documents and measure their quality
+
+Requirements
+- Strong Python and comfort designing and consuming APIs
+- Prompt engineering grounded in evaluation rather than intuition
+- Experience with LangChain, LlamaIndex or an equivalent framework
+
+Nice to have
+- Exposure to Zapier, n8n or another workflow automation tool
+- Familiarity with TypeScript for the surrounding application layer
+
+What we offer
+- Employee share scheme after twelve months
+- Hybrid working, with two days a week in the office
+- A yearly budget for conferences and training
+
+Equal opportunity
+Bluegum Media is an equal opportunity employer. We welcome applications from candidates of every background, and we will make reasonable adjustments at any stage of the process on request. We never ask candidates for payment, and we will only contact you from a bluegummedia.example address.",Melbourne,Bluegum Media,2026-06-20,synthetic-corpus,,,synthetic,synthetic,2026-06-30
+synthetic-008,Graduate Data Engineer,"About Harbour Metrics Harbour Metrics is a fictional retail analytics company created for testing this repository's retrieval pipeline. We are a team of roughly 80 people based in Sydney, and none of us exist. About the role You will join our data team in Sydney, reporting to the head of data. This advertisement is synthetic and describes no real vacancy. What you'll do - Model curated tables with dbt and review incoming pull requests - Schedule and monitor workloads in Airflow, and page-tune the alerts - Partner with analysts to agree contracts for the tables they depend on - Build and maintain batch pipelines that land source systems into the warehouse Requirements - Comfort with Terraform and deploying through CI - Three or more years writing production Python and SQL - Experience operating Kafka or an equivalent streaming platform Nice to have - Familiarity with Kubernetes and container-based deployment - Prior work with Grafana or Datadog for pipeline observability What we offer - Employee share scheme after twelve months - Additional paid leave over the December shutdown - A yearly budget for conferences and training Equal opportunity Harbour Metrics is an equal opportunity employer. We welcome applications from candidates of every background, and we will make reasonable adjustments at any stage of the process on request. We never ask candidates for payment, and we will only contact you from a harbourmetrics.example address.","About Harbour Metrics
+Harbour Metrics is a fictional retail analytics company created for testing this repository's retrieval pipeline. We are a team of roughly 80 people based in Sydney, and none of us exist.
+
+About the role
+You will join our data team in Sydney, reporting to the head of data. This advertisement is synthetic and describes no real vacancy.
+
+What you'll do
+- Model curated tables with dbt and review incoming pull requests
+- Schedule and monitor workloads in Airflow, and page-tune the alerts
+- Partner with analysts to agree contracts for the tables they depend on
+- Build and maintain batch pipelines that land source systems into the warehouse
+
+Requirements
+- Comfort with Terraform and deploying through CI
+- Three or more years writing production Python and SQL
+- Experience operating Kafka or an equivalent streaming platform
+
+Nice to have
+- Familiarity with Kubernetes and container-based deployment
+- Prior work with Grafana or Datadog for pipeline observability
+
+What we offer
+- Employee share scheme after twelve months
+- Additional paid leave over the December shutdown
+- A yearly budget for conferences and training
+
+Equal opportunity
+Harbour Metrics is an equal opportunity employer. We welcome applications from candidates of every background, and we will make reasonable adjustments at any stage of the process on request. We never ask candidates for payment, and we will only contact you from a harbourmetrics.example address.",Sydney,Harbour Metrics,2026-05-09,synthetic-corpus,,,synthetic,synthetic,2026-06-30
+synthetic-009,Graduate Data Analyst,"About Wattle Models Wattle Models is a fictional insurance pricing company created for testing this repository's retrieval pipeline. We are a team of roughly 250 people based in Melbourne, and none of us exist. About the role You will join our data team in Melbourne, reporting to the head of data. This advertisement is synthetic and describes no real vacancy. What you'll do - Answer questions from the commercial team and explain what the numbers mean - Present findings to people with no technical background and agree next steps - Keep definitions consistent so two teams do not report different revenue - Translate vague business questions into something a query can answer Requirements - Comfort working with incomplete data and saying so out loud - Experience with Power BI, Tableau, Looker or Metabase - Strong SQL and the judgement to know when a number looks wrong Nice to have - Experience running A/B tests and interpreting the results - Python for analysis, or a willingness to learn it here What we offer - Paid parental leave for all parents regardless of gender - Employee share scheme after twelve months - Hybrid working, with two days a week in the office Equal opportunity Wattle Models is an equal opportunity employer. We welcome applications from candidates of every background, and we will make reasonable adjustments at any stage of the process on request. We never ask candidates for payment, and we will only contact you from a wattlemodels.example address.","About Wattle Models
+Wattle Models is a fictional insurance pricing company created for testing this repository's retrieval pipeline. We are a team of roughly 250 people based in Melbourne, and none of us exist.
+
+About the role
+You will join our data team in Melbourne, reporting to the head of data. This advertisement is synthetic and describes no real vacancy.
+
+What you'll do
+- Answer questions from the commercial team and explain what the numbers mean
+- Present findings to people with no technical background and agree next steps
+- Keep definitions consistent so two teams do not report different revenue
+- Translate vague business questions into something a query can answer
+
+Requirements
+- Comfort working with incomplete data and saying so out loud
+- Experience with Power BI, Tableau, Looker or Metabase
+- Strong SQL and the judgement to know when a number looks wrong
+
+Nice to have
+- Experience running A/B tests and interpreting the results
+- Python for analysis, or a willingness to learn it here
+
+What we offer
+- Paid parental leave for all parents regardless of gender
+- Employee share scheme after twelve months
+- Hybrid working, with two days a week in the office
+
+Equal opportunity
+Wattle Models is an equal opportunity employer. We welcome applications from candidates of every background, and we will make reasonable adjustments at any stage of the process on request. We never ask candidates for payment, and we will only contact you from a wattlemodels.example address.",Melbourne,Wattle Models,2026-05-19,synthetic-corpus,,Data Analyst,synthetic,synthetic,2026-06-30
+synthetic-010,Applied Scientist,"About Koala Freight Koala Freight is a fictional logistics company created for testing this repository's retrieval pipeline. We are a team of roughly 80 people based in Sydney, and none of us exist. About the role You will join our data team in Sydney, reporting to the head of data. This advertisement is synthetic and describes no real vacancy. What you'll do - Explain model behaviour to stakeholders who will act on its output - Design and run controlled experiments to establish whether a change helped - Train, evaluate and monitor models that run in production - Track experiments with MLflow so results can be reproduced months later Requirements - Experience taking a model past the notebook and into a service - Solid grounding in statistics and experimental design - SQL fluent enough to build your own features Nice to have - Familiarity with Sagemaker, Vertex AI or Databricks ML - Published or open-source work we can read What we offer - A yearly budget for conferences and training - Employee share scheme after twelve months - Paid parental leave for all parents regardless of gender Equal opportunity Koala Freight is an equal opportunity employer. We welcome applications from candidates of every background, and we will make reasonable adjustments at any stage of the process on request. We never ask candidates for payment, and we will only contact you from a koalafreight.example address.","About Koala Freight
+Koala Freight is a fictional logistics company created for testing this repository's retrieval pipeline. We are a team of roughly 80 people based in Sydney, and none of us exist.
+
+About the role
+You will join our data team in Sydney, reporting to the head of data. This advertisement is synthetic and describes no real vacancy.
+
+What you'll do
+- Explain model behaviour to stakeholders who will act on its output
+- Design and run controlled experiments to establish whether a change helped
+- Train, evaluate and monitor models that run in production
+- Track experiments with MLflow so results can be reproduced months later
+
+Requirements
+- Experience taking a model past the notebook and into a service
+- Solid grounding in statistics and experimental design
+- SQL fluent enough to build your own features
+
+Nice to have
+- Familiarity with Sagemaker, Vertex AI or Databricks ML
+- Published or open-source work we can read
+
+What we offer
+- A yearly budget for conferences and training
+- Employee share scheme after twelve months
+- Paid parental leave for all parents regardless of gender
+
+Equal opportunity
+Koala Freight is an equal opportunity employer. We welcome applications from candidates of every background, and we will make reasonable adjustments at any stage of the process on request. We never ask candidates for payment, and we will only contact you from a koalafreight.example address.",Sydney,Koala Freight,2026-06-19,synthetic-corpus,,,synthetic,synthetic,2026-06-30
+synthetic-011,AI Solutions Engineer,"About Banksia Health Banksia Health is a fictional clinical research company created for testing this repository's retrieval pipeline. We are a team of roughly 40 people based in Melbourne, and none of us exist. About the role You will join our data team in Melbourne, reporting to the head of data. This advertisement is synthetic and describes no real vacancy. What you'll do - Work with security and compliance on what data a model may see - Build assistants that take actions on behalf of internal teams - Write evaluation sets so a prompt change can be judged rather than guessed at - Replace repetitive manual processes with reliable automated workflows Requirements - Understanding of vector search, chunking and reranking trade-offs - Experience with LangChain, LlamaIndex or an equivalent framework - Prompt engineering grounded in evaluation rather than intuition Nice to have - Familiarity with TypeScript for the surrounding application layer - Experience running background jobs and queues in production What we offer - Paid parental leave for all parents regardless of gender - Employee share scheme after twelve months - Additional paid leave over the December shutdown Equal opportunity Banksia Health is an equal opportunity employer. We welcome applications from candidates of every background, and we will make reasonable adjustments at any stage of the process on request. We never ask candidates for payment, and we will only contact you from a banksiahealth.example address.","About Banksia Health
+Banksia Health is a fictional clinical research company created for testing this repository's retrieval pipeline. We are a team of roughly 40 people based in Melbourne, and none of us exist.
+
+About the role
+You will join our data team in Melbourne, reporting to the head of data. This advertisement is synthetic and describes no real vacancy.
+
+What you'll do
+- Work with security and compliance on what data a model may see
+- Build assistants that take actions on behalf of internal teams
+- Write evaluation sets so a prompt change can be judged rather than guessed at
+- Replace repetitive manual processes with reliable automated workflows
+
+Requirements
+- Understanding of vector search, chunking and reranking trade-offs
+- Experience with LangChain, LlamaIndex or an equivalent framework
+- Prompt engineering grounded in evaluation rather than intuition
+
+Nice to have
+- Familiarity with TypeScript for the surrounding application layer
+- Experience running background jobs and queues in production
+
+What we offer
+- Paid parental leave for all parents regardless of gender
+- Employee share scheme after twelve months
+- Additional paid leave over the December shutdown
+
+Equal opportunity
+Banksia Health is an equal opportunity employer. We welcome applications from candidates of every background, and we will make reasonable adjustments at any stage of the process on request. We never ask candidates for payment, and we will only contact you from a banksiahealth.example address.",Melbourne,Banksia Health,2026-06-29,synthetic-corpus,,,synthetic,synthetic,2026-06-30
+synthetic-012,Senior Data Engineer,"About Laneway Energy Laneway Energy is a fictional renewable energy company created for testing this repository's retrieval pipeline. We are a team of roughly 120 people based in Sydney, and none of us exist. About the role You will join our data team in Sydney, reporting to the head of data. This advertisement is synthetic and describes no real vacancy. What you'll do - Model curated tables with dbt and review incoming pull requests - Build and maintain batch pipelines that land source systems into the warehouse - Move ingestion from Fivetran onto in-house connectors where cost demands it - Schedule and monitor workloads in Airflow, and page-tune the alerts Requirements - Comfort with Terraform and deploying through CI - Hands-on experience with Snowflake, BigQuery or Redshift - Three or more years writing production Python and SQL Nice to have - Familiarity with Kubernetes and container-based deployment - Exposure to Databricks and Unity Catalog What we offer - Paid parental leave for all parents regardless of gender - Hybrid working, with two days a week in the office - Employee share scheme after twelve months Equal opportunity Laneway Energy is an equal opportunity employer. We welcome applications from candidates of every background, and we will make reasonable adjustments at any stage of the process on request. We never ask candidates for payment, and we will only contact you from a lanewayenergy.example address.","About Laneway Energy
+Laneway Energy is a fictional renewable energy company created for testing this repository's retrieval pipeline. We are a team of roughly 120 people based in Sydney, and none of us exist.
+
+About the role
+You will join our data team in Sydney, reporting to the head of data. This advertisement is synthetic and describes no real vacancy.
+
+What you'll do
+- Model curated tables with dbt and review incoming pull requests
+- Build and maintain batch pipelines that land source systems into the warehouse
+- Move ingestion from Fivetran onto in-house connectors where cost demands it
+- Schedule and monitor workloads in Airflow, and page-tune the alerts
+
+Requirements
+- Comfort with Terraform and deploying through CI
+- Hands-on experience with Snowflake, BigQuery or Redshift
+- Three or more years writing production Python and SQL
+
+Nice to have
+- Familiarity with Kubernetes and container-based deployment
+- Exposure to Databricks and Unity Catalog
+
+What we offer
+- Paid parental leave for all parents regardless of gender
+- Hybrid working, with two days a week in the office
+- Employee share scheme after twelve months
+
+Equal opportunity
+Laneway Energy is an equal opportunity employer. We welcome applications from candidates of every background, and we will make reasonable adjustments at any stage of the process on request. We never ask candidates for payment, and we will only contact you from a lanewayenergy.example address.",Sydney,Laneway Energy,2026-06-16,synthetic-corpus,,Data Engineer,synthetic,synthetic,2026-06-30
+synthetic-013,Business Intelligence Analyst,"About Quay Financial Quay Financial is a fictional payments company created for testing this repository's retrieval pipeline. We are a team of roughly 120 people based in Melbourne, and none of us exist. About the role You will join our data team in Melbourne, reporting to the head of data. This advertisement is synthetic and describes no real vacancy. What you'll do - Keep definitions consistent so two teams do not report different revenue - Build and maintain Power BI dashboards used by the leadership group - Answer questions from the commercial team and explain what the numbers mean - Translate vague business questions into something a query can answer Requirements - Comfort working with incomplete data and saying so out loud - Clear written communication for a non-technical audience - Strong SQL and the judgement to know when a number looks wrong Nice to have - Exposure to dbt for managing shared metric definitions - Python for analysis, or a willingness to learn it here What we offer - Employee share scheme after twelve months - Hybrid working, with two days a week in the office - Additional paid leave over the December shutdown Equal opportunity Quay Financial is an equal opportunity employer. We welcome applications from candidates of every background, and we will make reasonable adjustments at any stage of the process on request. We never ask candidates for payment, and we will only contact you from a quayfinancial.example address.","About Quay Financial
+Quay Financial is a fictional payments company created for testing this repository's retrieval pipeline. We are a team of roughly 120 people based in Melbourne, and none of us exist.
+
+About the role
+You will join our data team in Melbourne, reporting to the head of data. This advertisement is synthetic and describes no real vacancy.
+
+What you'll do
+- Keep definitions consistent so two teams do not report different revenue
+- Build and maintain Power BI dashboards used by the leadership group
+- Answer questions from the commercial team and explain what the numbers mean
+- Translate vague business questions into something a query can answer
+
+Requirements
+- Comfort working with incomplete data and saying so out loud
+- Clear written communication for a non-technical audience
+- Strong SQL and the judgement to know when a number looks wrong
+
+Nice to have
+- Exposure to dbt for managing shared metric definitions
+- Python for analysis, or a willingness to learn it here
+
+What we offer
+- Employee share scheme after twelve months
+- Hybrid working, with two days a week in the office
+- Additional paid leave over the December shutdown
+
+Equal opportunity
+Quay Financial is an equal opportunity employer. We welcome applications from candidates of every background, and we will make reasonable adjustments at any stage of the process on request. We never ask candidates for payment, and we will only contact you from a quayfinancial.example address.",Melbourne,Quay Financial,2026-06-23,synthetic-corpus,,,synthetic,synthetic,2026-06-30
+synthetic-014,Applied Scientist,"About Southern Grid Southern Grid is a fictional utilities company created for testing this repository's retrieval pipeline. We are a team of roughly 400 people based in Sydney, and none of us exist. About the role You will join our data team in Sydney, reporting to the head of data. This advertisement is synthetic and describes no real vacancy. What you'll do - Frame business problems as measurable modelling questions - Design and run controlled experiments to establish whether a change helped - Train, evaluate and monitor models that run in production - Track experiments with MLflow so results can be reproduced months later Requirements - Experience taking a model past the notebook and into a service - Python with scikit-learn, PyTorch or TensorFlow - SQL fluent enough to build your own features Nice to have - Published or open-source work we can read - Familiarity with Sagemaker, Vertex AI or Databricks ML What we offer - Employee share scheme after twelve months - Hybrid working, with two days a week in the office - A yearly budget for conferences and training Equal opportunity Southern Grid is an equal opportunity employer. We welcome applications from candidates of every background, and we will make reasonable adjustments at any stage of the process on request. We never ask candidates for payment, and we will only contact you from a southerngrid.example address.","About Southern Grid
+Southern Grid is a fictional utilities company created for testing this repository's retrieval pipeline. We are a team of roughly 400 people based in Sydney, and none of us exist.
+
+About the role
+You will join our data team in Sydney, reporting to the head of data. This advertisement is synthetic and describes no real vacancy.
+
+What you'll do
+- Frame business problems as measurable modelling questions
+- Design and run controlled experiments to establish whether a change helped
+- Train, evaluate and monitor models that run in production
+- Track experiments with MLflow so results can be reproduced months later
+
+Requirements
+- Experience taking a model past the notebook and into a service
+- Python with scikit-learn, PyTorch or TensorFlow
+- SQL fluent enough to build your own features
+
+Nice to have
+- Published or open-source work we can read
+- Familiarity with Sagemaker, Vertex AI or Databricks ML
+
+What we offer
+- Employee share scheme after twelve months
+- Hybrid working, with two days a week in the office
+- A yearly budget for conferences and training
+
+Equal opportunity
+Southern Grid is an equal opportunity employer. We welcome applications from candidates of every background, and we will make reasonable adjustments at any stage of the process on request. We never ask candidates for payment, and we will only contact you from a southerngrid.example address.",Sydney,Southern Grid,2026-05-18,synthetic-corpus,,,synthetic,synthetic,2026-06-30
+synthetic-015,AI Engineer,"About Bluegum Media Bluegum Media is a fictional streaming company created for testing this repository's retrieval pipeline. We are a team of roughly 40 people based in Melbourne, and none of us exist. About the role You will join our data team in Melbourne, reporting to the head of data. This advertisement is synthetic and describes no real vacancy. What you'll do - Replace repetitive manual processes with reliable automated workflows - Work with security and compliance on what data a model may see - Design retrieval pipelines over internal documents and measure their quality - Build assistants that take actions on behalf of internal teams Requirements - Prompt engineering grounded in evaluation rather than intuition - Strong Python and comfort designing and consuming APIs - Understanding of vector search, chunking and reranking trade-offs Nice to have - Exposure to Zapier, n8n or another workflow automation tool - Familiarity with TypeScript for the surrounding application layer What we offer - Employee share scheme after twelve months - Hybrid working, with two days a week in the office - Additional paid leave over the December shutdown Equal opportunity Bluegum Media is an equal opportunity employer. We welcome applications from candidates of every background, and we will make reasonable adjustments at any stage of the process on request. We never ask candidates for payment, and we will only contact you from a bluegummedia.example address.","About Bluegum Media
+Bluegum Media is a fictional streaming company created for testing this repository's retrieval pipeline. We are a team of roughly 40 people based in Melbourne, and none of us exist.
+
+About the role
+You will join our data team in Melbourne, reporting to the head of data. This advertisement is synthetic and describes no real vacancy.
+
+What you'll do
+- Replace repetitive manual processes with reliable automated workflows
+- Work with security and compliance on what data a model may see
+- Design retrieval pipelines over internal documents and measure their quality
+- Build assistants that take actions on behalf of internal teams
+
+Requirements
+- Prompt engineering grounded in evaluation rather than intuition
+- Strong Python and comfort designing and consuming APIs
+- Understanding of vector search, chunking and reranking trade-offs
+
+Nice to have
+- Exposure to Zapier, n8n or another workflow automation tool
+- Familiarity with TypeScript for the surrounding application layer
+
+What we offer
+- Employee share scheme after twelve months
+- Hybrid working, with two days a week in the office
+- Additional paid leave over the December shutdown
+
+Equal opportunity
+Bluegum Media is an equal opportunity employer. We welcome applications from candidates of every background, and we will make reasonable adjustments at any stage of the process on request. We never ask candidates for payment, and we will only contact you from a bluegummedia.example address.",Melbourne,Bluegum Media,2026-05-30,synthetic-corpus,,AI / Automation,synthetic,synthetic,2026-06-30
+synthetic-016,Data Engineer,"About Harbour Metrics Harbour Metrics is a fictional retail analytics company created for testing this repository's retrieval pipeline. We are a team of roughly 250 people based in Sydney, and none of us exist. About the role You will join our data team in Sydney, reporting to the head of data. This advertisement is synthetic and describes no real vacancy. What you'll do - Schedule and monitor workloads in Airflow, and page-tune the alerts - Model curated tables with dbt and review incoming pull requests - Partner with analysts to agree contracts for the tables they depend on - Move ingestion from Fivetran onto in-house connectors where cost demands it Requirements - Hands-on experience with Snowflake, BigQuery or Redshift - Experience operating Kafka or an equivalent streaming platform - Comfort with Terraform and deploying through CI Nice to have - Prior work with Grafana or Datadog for pipeline observability - Exposure to Databricks and Unity Catalog What we offer - A yearly budget for conferences and training - Hybrid working, with two days a week in the office - Additional paid leave over the December shutdown Equal opportunity Harbour Metrics is an equal opportunity employer. We welcome applications from candidates of every background, and we will make reasonable adjustments at any stage of the process on request. We never ask candidates for payment, and we will only contact you from a harbourmetrics.example address.","About Harbour Metrics
+Harbour Metrics is a fictional retail analytics company created for testing this repository's retrieval pipeline. We are a team of roughly 250 people based in Sydney, and none of us exist.
+
+About the role
+You will join our data team in Sydney, reporting to the head of data. This advertisement is synthetic and describes no real vacancy.
+
+What you'll do
+- Schedule and monitor workloads in Airflow, and page-tune the alerts
+- Model curated tables with dbt and review incoming pull requests
+- Partner with analysts to agree contracts for the tables they depend on
+- Move ingestion from Fivetran onto in-house connectors where cost demands it
+
+Requirements
+- Hands-on experience with Snowflake, BigQuery or Redshift
+- Experience operating Kafka or an equivalent streaming platform
+- Comfort with Terraform and deploying through CI
+
+Nice to have
+- Prior work with Grafana or Datadog for pipeline observability
+- Exposure to Databricks and Unity Catalog
+
+What we offer
+- A yearly budget for conferences and training
+- Hybrid working, with two days a week in the office
+- Additional paid leave over the December shutdown
+
+Equal opportunity
+Harbour Metrics is an equal opportunity employer. We welcome applications from candidates of every background, and we will make reasonable adjustments at any stage of the process on request. We never ask candidates for payment, and we will only contact you from a harbourmetrics.example address.",Sydney,Harbour Metrics,2026-05-05,synthetic-corpus,,,synthetic,synthetic,2026-06-30
+synthetic-017,Graduate Data Analyst,"About Wattle Models Wattle Models is a fictional insurance pricing company created for testing this repository's retrieval pipeline. We are a team of roughly 250 people based in Melbourne, and none of us exist. About the role You will join our data team in Melbourne, reporting to the head of data. This advertisement is synthetic and describes no real vacancy. What you'll do - Keep definitions consistent so two teams do not report different revenue - Build and maintain Power BI dashboards used by the leadership group - Translate vague business questions into something a query can answer - Answer questions from the commercial team and explain what the numbers mean Requirements - Experience with Power BI, Tableau, Looker or Metabase - Clear written communication for a non-technical audience - Comfort working with incomplete data and saying so out loud Nice to have - Experience running A/B tests and interpreting the results - Exposure to dbt for managing shared metric definitions What we offer - Employee share scheme after twelve months - Hybrid working, with two days a week in the office - A yearly budget for conferences and training Equal opportunity Wattle Models is an equal opportunity employer. We welcome applications from candidates of every background, and we will make reasonable adjustments at any stage of the process on request. We never ask candidates for payment, and we will only contact you from a wattlemodels.example address.","About Wattle Models
+Wattle Models is a fictional insurance pricing company created for testing this repository's retrieval pipeline. We are a team of roughly 250 people based in Melbourne, and none of us exist.
+
+About the role
+You will join our data team in Melbourne, reporting to the head of data. This advertisement is synthetic and describes no real vacancy.
+
+What you'll do
+- Keep definitions consistent so two teams do not report different revenue
+- Build and maintain Power BI dashboards used by the leadership group
+- Translate vague business questions into something a query can answer
+- Answer questions from the commercial team and explain what the numbers mean
+
+Requirements
+- Experience with Power BI, Tableau, Looker or Metabase
+- Clear written communication for a non-technical audience
+- Comfort working with incomplete data and saying so out loud
+
+Nice to have
+- Experience running A/B tests and interpreting the results
+- Exposure to dbt for managing shared metric definitions
+
+What we offer
+- Employee share scheme after twelve months
+- Hybrid working, with two days a week in the office
+- A yearly budget for conferences and training
+
+Equal opportunity
+Wattle Models is an equal opportunity employer. We welcome applications from candidates of every background, and we will make reasonable adjustments at any stage of the process on request. We never ask candidates for payment, and we will only contact you from a wattlemodels.example address.",Melbourne,Wattle Models,2026-05-31,synthetic-corpus,,,synthetic,synthetic,2026-06-30
+synthetic-018,Data Scientist,"About Koala Freight Koala Freight is a fictional logistics company created for testing this repository's retrieval pipeline. We are a team of roughly 80 people based in Sydney, and none of us exist. About the role You will join our data team in Sydney, reporting to the head of data. This advertisement is synthetic and describes no real vacancy. What you'll do - Design and run controlled experiments to establish whether a change helped - Track experiments with MLflow so results can be reproduced months later - Train, evaluate and monitor models that run in production - Explain model behaviour to stakeholders who will act on its output Requirements - SQL fluent enough to build your own features - Experience taking a model past the notebook and into a service - Solid grounding in statistics and experimental design Nice to have - Familiarity with Sagemaker, Vertex AI or Databricks ML - Experience with large language models and retrieval-augmented generation What we offer - Employee share scheme after twelve months - A yearly budget for conferences and training - Paid parental leave for all parents regardless of gender Equal opportunity Koala Freight is an equal opportunity employer. We welcome applications from candidates of every background, and we will make reasonable adjustments at any stage of the process on request. We never ask candidates for payment, and we will only contact you from a koalafreight.example address.","About Koala Freight
+Koala Freight is a fictional logistics company created for testing this repository's retrieval pipeline. We are a team of roughly 80 people based in Sydney, and none of us exist.
+
+About the role
+You will join our data team in Sydney, reporting to the head of data. This advertisement is synthetic and describes no real vacancy.
+
+What you'll do
+- Design and run controlled experiments to establish whether a change helped
+- Track experiments with MLflow so results can be reproduced months later
+- Train, evaluate and monitor models that run in production
+- Explain model behaviour to stakeholders who will act on its output
+
+Requirements
+- SQL fluent enough to build your own features
+- Experience taking a model past the notebook and into a service
+- Solid grounding in statistics and experimental design
+
+Nice to have
+- Familiarity with Sagemaker, Vertex AI or Databricks ML
+- Experience with large language models and retrieval-augmented generation
+
+What we offer
+- Employee share scheme after twelve months
+- A yearly budget for conferences and training
+- Paid parental leave for all parents regardless of gender
+
+Equal opportunity
+Koala Freight is an equal opportunity employer. We welcome applications from candidates of every background, and we will make reasonable adjustments at any stage of the process on request. We never ask candidates for payment, and we will only contact you from a koalafreight.example address.",Sydney,Koala Freight,2026-06-06,synthetic-corpus,,Data Scientist,synthetic,synthetic,2026-06-30
+synthetic-019,Automation Engineer,"About Banksia Health Banksia Health is a fictional clinical research company created for testing this repository's retrieval pipeline. We are a team of roughly 40 people based in Melbourne, and none of us exist. About the role You will join our data team in Melbourne, reporting to the head of data. This advertisement is synthetic and describes no real vacancy. What you'll do - Build assistants that take actions on behalf of internal teams - Replace repetitive manual processes with reliable automated workflows - Design retrieval pipelines over internal documents and measure their quality - Work with security and compliance on what data a model may see Requirements - Understanding of vector search, chunking and reranking trade-offs - Strong Python and comfort designing and consuming APIs - Experience with LangChain, LlamaIndex or an equivalent framework Nice to have - Experience running background jobs and queues in production - Familiarity with TypeScript for the surrounding application layer What we offer - Hybrid working, with two days a week in the office - A yearly budget for conferences and training - Paid parental leave for all parents regardless of gender Equal opportunity Banksia Health is an equal opportunity employer. We welcome applications from candidates of every background, and we will make reasonable adjustments at any stage of the process on request. We never ask candidates for payment, and we will only contact you from a banksiahealth.example address.","About Banksia Health
+Banksia Health is a fictional clinical research company created for testing this repository's retrieval pipeline. We are a team of roughly 40 people based in Melbourne, and none of us exist.
+
+About the role
+You will join our data team in Melbourne, reporting to the head of data. This advertisement is synthetic and describes no real vacancy.
+
+What you'll do
+- Build assistants that take actions on behalf of internal teams
+- Replace repetitive manual processes with reliable automated workflows
+- Design retrieval pipelines over internal documents and measure their quality
+- Work with security and compliance on what data a model may see
+
+Requirements
+- Understanding of vector search, chunking and reranking trade-offs
+- Strong Python and comfort designing and consuming APIs
+- Experience with LangChain, LlamaIndex or an equivalent framework
+
+Nice to have
+- Experience running background jobs and queues in production
+- Familiarity with TypeScript for the surrounding application layer
+
+What we offer
+- Hybrid working, with two days a week in the office
+- A yearly budget for conferences and training
+- Paid parental leave for all parents regardless of gender
+
+Equal opportunity
+Banksia Health is an equal opportunity employer. We welcome applications from candidates of every background, and we will make reasonable adjustments at any stage of the process on request. We never ask candidates for payment, and we will only contact you from a banksiahealth.example address.",Melbourne,Banksia Health,2026-05-25,synthetic-corpus,,,synthetic,synthetic,2026-06-30
+synthetic-020,Senior Data Engineer,"About Laneway Energy Laneway Energy is a fictional renewable energy company created for testing this repository's retrieval pipeline. We are a team of roughly 250 people based in Sydney, and none of us exist. About the role You will join our data team in Sydney, reporting to the head of data. This advertisement is synthetic and describes no real vacancy. What you'll do - Schedule and monitor workloads in Airflow, and page-tune the alerts - Model curated tables with dbt and review incoming pull requests - Build and maintain batch pipelines that land source systems into the warehouse - Partner with analysts to agree contracts for the tables they depend on Requirements - Comfort with Terraform and deploying through CI - Working knowledge of Spark or another distributed processing engine - Hands-on experience with Snowflake, BigQuery or Redshift Nice to have - Prior work with Grafana or Datadog for pipeline observability - Exposure to Databricks and Unity Catalog What we offer - Employee share scheme after twelve months - Hybrid working, with two days a week in the office - A yearly budget for conferences and training Equal opportunity Laneway Energy is an equal opportunity employer. We welcome applications from candidates of every background, and we will make reasonable adjustments at any stage of the process on request. We never ask candidates for payment, and we will only contact you from a lanewayenergy.example address.","About Laneway Energy
+Laneway Energy is a fictional renewable energy company created for testing this repository's retrieval pipeline. We are a team of roughly 250 people based in Sydney, and none of us exist.
+
+About the role
+You will join our data team in Sydney, reporting to the head of data. This advertisement is synthetic and describes no real vacancy.
+
+What you'll do
+- Schedule and monitor workloads in Airflow, and page-tune the alerts
+- Model curated tables with dbt and review incoming pull requests
+- Build and maintain batch pipelines that land source systems into the warehouse
+- Partner with analysts to agree contracts for the tables they depend on
+
+Requirements
+- Comfort with Terraform and deploying through CI
+- Working knowledge of Spark or another distributed processing engine
+- Hands-on experience with Snowflake, BigQuery or Redshift
+
+Nice to have
+- Prior work with Grafana or Datadog for pipeline observability
+- Exposure to Databricks and Unity Catalog
+
+What we offer
+- Employee share scheme after twelve months
+- Hybrid working, with two days a week in the office
+- A yearly budget for conferences and training
+
+Equal opportunity
+Laneway Energy is an equal opportunity employer. We welcome applications from candidates of every background, and we will make reasonable adjustments at any stage of the process on request. We never ask candidates for payment, and we will only contact you from a lanewayenergy.example address.",Sydney,Laneway Energy,2026-04-11,synthetic-corpus,,,synthetic,synthetic,2026-06-30
+synthetic-021,Business Intelligence Analyst,"About Quay Financial Quay Financial is a fictional payments company created for testing this repository's retrieval pipeline. We are a team of roughly 80 people based in Melbourne, and none of us exist. About the role You will join our data team in Melbourne, reporting to the head of data. This advertisement is synthetic and describes no real vacancy. What you'll do - Build and maintain Power BI dashboards used by the leadership group - Keep definitions consistent so two teams do not report different revenue - Translate vague business questions into something a query can answer - Present findings to people with no technical background and agree next steps Requirements - Comfort working with incomplete data and saying so out loud - Experience with Power BI, Tableau, Looker or Metabase - Clear written communication for a non-technical audience Nice to have - Python for analysis, or a willingness to learn it here - Experience running A/B tests and interpreting the results What we offer - Employee share scheme after twelve months - Additional paid leave over the December shutdown - Paid parental leave for all parents regardless of gender Equal opportunity Quay Financial is an equal opportunity employer. We welcome applications from candidates of every background, and we will make reasonable adjustments at any stage of the process on request. We never ask candidates for payment, and we will only contact you from a quayfinancial.example address.","About Quay Financial
+Quay Financial is a fictional payments company created for testing this repository's retrieval pipeline. We are a team of roughly 80 people based in Melbourne, and none of us exist.
+
+About the role
+You will join our data team in Melbourne, reporting to the head of data. This advertisement is synthetic and describes no real vacancy.
+
+What you'll do
+- Build and maintain Power BI dashboards used by the leadership group
+- Keep definitions consistent so two teams do not report different revenue
+- Translate vague business questions into something a query can answer
+- Present findings to people with no technical background and agree next steps
+
+Requirements
+- Comfort working with incomplete data and saying so out loud
+- Experience with Power BI, Tableau, Looker or Metabase
+- Clear written communication for a non-technical audience
+
+Nice to have
+- Python for analysis, or a willingness to learn it here
+- Experience running A/B tests and interpreting the results
+
+What we offer
+- Employee share scheme after twelve months
+- Additional paid leave over the December shutdown
+- Paid parental leave for all parents regardless of gender
+
+Equal opportunity
+Quay Financial is an equal opportunity employer. We welcome applications from candidates of every background, and we will make reasonable adjustments at any stage of the process on request. We never ask candidates for payment, and we will only contact you from a quayfinancial.example address.",Melbourne,Quay Financial,2026-06-29,synthetic-corpus,,Data Analyst,synthetic,synthetic,2026-06-30
+synthetic-022,Data Scientist,"About Southern Grid Southern Grid is a fictional utilities company created for testing this repository's retrieval pipeline. We are a team of roughly 400 people based in Sydney, and none of us exist. About the role You will join our data team in Sydney, reporting to the head of data. This advertisement is synthetic and describes no real vacancy. What you'll do - Explain model behaviour to stakeholders who will act on its output - Frame business problems as measurable modelling questions - Design and run controlled experiments to establish whether a change helped - Train, evaluate and monitor models that run in production Requirements - SQL fluent enough to build your own features - Python with scikit-learn, PyTorch or TensorFlow - Experience taking a model past the notebook and into a service Nice to have - Published or open-source work we can read - Familiarity with Sagemaker, Vertex AI or Databricks ML What we offer - Employee share scheme after twelve months - Additional paid leave over the December shutdown - Paid parental leave for all parents regardless of gender Equal opportunity Southern Grid is an equal opportunity employer. We welcome applications from candidates of every background, and we will make reasonable adjustments at any stage of the process on request. We never ask candidates for payment, and we will only contact you from a southerngrid.example address.","About Southern Grid
+Southern Grid is a fictional utilities company created for testing this repository's retrieval pipeline. We are a team of roughly 400 people based in Sydney, and none of us exist.
+
+About the role
+You will join our data team in Sydney, reporting to the head of data. This advertisement is synthetic and describes no real vacancy.
+
+What you'll do
+- Explain model behaviour to stakeholders who will act on its output
+- Frame business problems as measurable modelling questions
+- Design and run controlled experiments to establish whether a change helped
+- Train, evaluate and monitor models that run in production
+
+Requirements
+- SQL fluent enough to build your own features
+- Python with scikit-learn, PyTorch or TensorFlow
+- Experience taking a model past the notebook and into a service
+
+Nice to have
+- Published or open-source work we can read
+- Familiarity with Sagemaker, Vertex AI or Databricks ML
+
+What we offer
+- Employee share scheme after twelve months
+- Additional paid leave over the December shutdown
+- Paid parental leave for all parents regardless of gender
+
+Equal opportunity
+Southern Grid is an equal opportunity employer. We welcome applications from candidates of every background, and we will make reasonable adjustments at any stage of the process on request. We never ask candidates for payment, and we will only contact you from a southerngrid.example address.",Sydney,Southern Grid,2026-06-03,synthetic-corpus,,,synthetic,synthetic,2026-06-30
+synthetic-023,AI Engineer,"About Bluegum Media Bluegum Media is a fictional streaming company created for testing this repository's retrieval pipeline. We are a team of roughly 80 people based in Melbourne, and none of us exist. About the role You will join our data team in Melbourne, reporting to the head of data. This advertisement is synthetic and describes no real vacancy. What you'll do - Replace repetitive manual processes with reliable automated workflows - Design retrieval pipelines over internal documents and measure their quality - Build assistants that take actions on behalf of internal teams - Write evaluation sets so a prompt change can be judged rather than guessed at Requirements - Strong Python and comfort designing and consuming APIs - Experience with LangChain, LlamaIndex or an equivalent framework - Understanding of vector search, chunking and reranking trade-offs Nice to have - Exposure to Zapier, n8n or another workflow automation tool - Experience running background jobs and queues in production What we offer - Paid parental leave for all parents regardless of gender - Employee share scheme after twelve months - A yearly budget for conferences and training Equal opportunity Bluegum Media is an equal opportunity employer. We welcome applications from candidates of every background, and we will make reasonable adjustments at any stage of the process on request. We never ask candidates for payment, and we will only contact you from a bluegummedia.example address.","About Bluegum Media
+Bluegum Media is a fictional streaming company created for testing this repository's retrieval pipeline. We are a team of roughly 80 people based in Melbourne, and none of us exist.
+
+About the role
+You will join our data team in Melbourne, reporting to the head of data. This advertisement is synthetic and describes no real vacancy.
+
+What you'll do
+- Replace repetitive manual processes with reliable automated workflows
+- Design retrieval pipelines over internal documents and measure their quality
+- Build assistants that take actions on behalf of internal teams
+- Write evaluation sets so a prompt change can be judged rather than guessed at
+
+Requirements
+- Strong Python and comfort designing and consuming APIs
+- Experience with LangChain, LlamaIndex or an equivalent framework
+- Understanding of vector search, chunking and reranking trade-offs
+
+Nice to have
+- Exposure to Zapier, n8n or another workflow automation tool
+- Experience running background jobs and queues in production
+
+What we offer
+- Paid parental leave for all parents regardless of gender
+- Employee share scheme after twelve months
+- A yearly budget for conferences and training
+
+Equal opportunity
+Bluegum Media is an equal opportunity employer. We welcome applications from candidates of every background, and we will make reasonable adjustments at any stage of the process on request. We never ask candidates for payment, and we will only contact you from a bluegummedia.example address.",Melbourne,Bluegum Media,2026-05-05,synthetic-corpus,,,synthetic,synthetic,2026-06-30
+synthetic-024,Graduate Data Engineer,"About Harbour Metrics Harbour Metrics is a fictional retail analytics company created for testing this repository's retrieval pipeline. We are a team of roughly 40 people based in Sydney, and none of us exist. About the role You will join our data team in Sydney, reporting to the head of data. This advertisement is synthetic and describes no real vacancy. What you'll do - Model curated tables with dbt and review incoming pull requests - Move ingestion from Fivetran onto in-house connectors where cost demands it - Partner with analysts to agree contracts for the tables they depend on - Schedule and monitor workloads in Airflow, and page-tune the alerts Requirements - Hands-on experience with Snowflake, BigQuery or Redshift - Working knowledge of Spark or another distributed processing engine - Experience operating Kafka or an equivalent streaming platform Nice to have - Familiarity with Kubernetes and container-based deployment - Prior work with Grafana or Datadog for pipeline observability What we offer - Additional paid leave over the December shutdown - A yearly budget for conferences and training - Paid parental leave for all parents regardless of gender Equal opportunity Harbour Metrics is an equal opportunity employer. We welcome applications from candidates of every background, and we will make reasonable adjustments at any stage of the process on request. We never ask candidates for payment, and we will only contact you from a harbourmetrics.example address.","About Harbour Metrics
+Harbour Metrics is a fictional retail analytics company created for testing this repository's retrieval pipeline. We are a team of roughly 40 people based in Sydney, and none of us exist.
+
+About the role
+You will join our data team in Sydney, reporting to the head of data. This advertisement is synthetic and describes no real vacancy.
+
+What you'll do
+- Model curated tables with dbt and review incoming pull requests
+- Move ingestion from Fivetran onto in-house connectors where cost demands it
+- Partner with analysts to agree contracts for the tables they depend on
+- Schedule and monitor workloads in Airflow, and page-tune the alerts
+
+Requirements
+- Hands-on experience with Snowflake, BigQuery or Redshift
+- Working knowledge of Spark or another distributed processing engine
+- Experience operating Kafka or an equivalent streaming platform
+
+Nice to have
+- Familiarity with Kubernetes and container-based deployment
+- Prior work with Grafana or Datadog for pipeline observability
+
+What we offer
+- Additional paid leave over the December shutdown
+- A yearly budget for conferences and training
+- Paid parental leave for all parents regardless of gender
+
+Equal opportunity
+Harbour Metrics is an equal opportunity employer. We welcome applications from candidates of every background, and we will make reasonable adjustments at any stage of the process on request. We never ask candidates for payment, and we will only contact you from a harbourmetrics.example address.",Sydney,Harbour Metrics,2026-06-03,synthetic-corpus,,Data Engineer,synthetic,synthetic,2026-06-30
+synthetic-025,Data Analyst,"About Wattle Models Wattle Models is a fictional insurance pricing company created for testing this repository's retrieval pipeline. We are a team of roughly 250 people based in Melbourne, and none of us exist. About the role You will join our data team in Melbourne, reporting to the head of data. This advertisement is synthetic and describes no real vacancy. What you'll do - Answer questions from the commercial team and explain what the numbers mean - Present findings to people with no technical background and agree next steps - Keep definitions consistent so two teams do not report different revenue - Build and maintain Power BI dashboards used by the leadership group Requirements - Comfort working with incomplete data and saying so out loud - Strong SQL and the judgement to know when a number looks wrong - Clear written communication for a non-technical audience Nice to have - Experience running A/B tests and interpreting the results - Python for analysis, or a willingness to learn it here What we offer - A yearly budget for conferences and training - Employee share scheme after twelve months - Hybrid working, with two days a week in the office Equal opportunity Wattle Models is an equal opportunity employer. We welcome applications from candidates of every background, and we will make reasonable adjustments at any stage of the process on request. We never ask candidates for payment, and we will only contact you from a wattlemodels.example address.","About Wattle Models
+Wattle Models is a fictional insurance pricing company created for testing this repository's retrieval pipeline. We are a team of roughly 250 people based in Melbourne, and none of us exist.
+
+About the role
+You will join our data team in Melbourne, reporting to the head of data. This advertisement is synthetic and describes no real vacancy.
+
+What you'll do
+- Answer questions from the commercial team and explain what the numbers mean
+- Present findings to people with no technical background and agree next steps
+- Keep definitions consistent so two teams do not report different revenue
+- Build and maintain Power BI dashboards used by the leadership group
+
+Requirements
+- Comfort working with incomplete data and saying so out loud
+- Strong SQL and the judgement to know when a number looks wrong
+- Clear written communication for a non-technical audience
+
+Nice to have
+- Experience running A/B tests and interpreting the results
+- Python for analysis, or a willingness to learn it here
+
+What we offer
+- A yearly budget for conferences and training
+- Employee share scheme after twelve months
+- Hybrid working, with two days a week in the office
+
+Equal opportunity
+Wattle Models is an equal opportunity employer. We welcome applications from candidates of every background, and we will make reasonable adjustments at any stage of the process on request. We never ask candidates for payment, and we will only contact you from a wattlemodels.example address.",Melbourne,Wattle Models,2026-06-05,synthetic-corpus,,,synthetic,synthetic,2026-06-30
+synthetic-026,Data Scientist,"About Koala Freight Koala Freight is a fictional logistics company created for testing this repository's retrieval pipeline. We are a team of roughly 120 people based in Sydney, and none of us exist. About the role You will join our data team in Sydney, reporting to the head of data. This advertisement is synthetic and describes no real vacancy. What you'll do - Design and run controlled experiments to establish whether a change helped - Frame business problems as measurable modelling questions - Track experiments with MLflow so results can be reproduced months later - Explain model behaviour to stakeholders who will act on its output Requirements - SQL fluent enough to build your own features - Solid grounding in statistics and experimental design - Experience taking a model past the notebook and into a service Nice to have - Familiarity with Sagemaker, Vertex AI or Databricks ML - Published or open-source work we can read What we offer - Paid parental leave for all parents regardless of gender - A yearly budget for conferences and training - Employee share scheme after twelve months Equal opportunity Koala Freight is an equal opportunity employer. We welcome applications from candidates of every background, and we will make reasonable adjustments at any stage of the process on request. We never ask candidates for payment, and we will only contact you from a koalafreight.example address.","About Koala Freight
+Koala Freight is a fictional logistics company created for testing this repository's retrieval pipeline. We are a team of roughly 120 people based in Sydney, and none of us exist.
+
+About the role
+You will join our data team in Sydney, reporting to the head of data. This advertisement is synthetic and describes no real vacancy.
+
+What you'll do
+- Design and run controlled experiments to establish whether a change helped
+- Frame business problems as measurable modelling questions
+- Track experiments with MLflow so results can be reproduced months later
+- Explain model behaviour to stakeholders who will act on its output
+
+Requirements
+- SQL fluent enough to build your own features
+- Solid grounding in statistics and experimental design
+- Experience taking a model past the notebook and into a service
+
+Nice to have
+- Familiarity with Sagemaker, Vertex AI or Databricks ML
+- Published or open-source work we can read
+
+What we offer
+- Paid parental leave for all parents regardless of gender
+- A yearly budget for conferences and training
+- Employee share scheme after twelve months
+
+Equal opportunity
+Koala Freight is an equal opportunity employer. We welcome applications from candidates of every background, and we will make reasonable adjustments at any stage of the process on request. We never ask candidates for payment, and we will only contact you from a koalafreight.example address.",Sydney,Koala Freight,2026-05-13,synthetic-corpus,,,synthetic,synthetic,2026-06-30
+synthetic-027,AI Solutions Engineer,"About Banksia Health Banksia Health is a fictional clinical research company created for testing this repository's retrieval pipeline. We are a team of roughly 120 people based in Melbourne, and none of us exist. About the role You will join our data team in Melbourne, reporting to the head of data. This advertisement is synthetic and describes no real vacancy. What you'll do - Work with security and compliance on what data a model may see - Build assistants that take actions on behalf of internal teams - Replace repetitive manual processes with reliable automated workflows - Write evaluation sets so a prompt change can be judged rather than guessed at Requirements - Prompt engineering grounded in evaluation rather than intuition - Understanding of vector search, chunking and reranking trade-offs - Strong Python and comfort designing and consuming APIs Nice to have - Familiarity with TypeScript for the surrounding application layer - Experience running background jobs and queues in production What we offer - A yearly budget for conferences and training - Paid parental leave for all parents regardless of gender - Employee share scheme after twelve months Equal opportunity Banksia Health is an equal opportunity employer. We welcome applications from candidates of every background, and we will make reasonable adjustments at any stage of the process on request. We never ask candidates for payment, and we will only contact you from a banksiahealth.example address.","About Banksia Health
+Banksia Health is a fictional clinical research company created for testing this repository's retrieval pipeline. We are a team of roughly 120 people based in Melbourne, and none of us exist.
+
+About the role
+You will join our data team in Melbourne, reporting to the head of data. This advertisement is synthetic and describes no real vacancy.
+
+What you'll do
+- Work with security and compliance on what data a model may see
+- Build assistants that take actions on behalf of internal teams
+- Replace repetitive manual processes with reliable automated workflows
+- Write evaluation sets so a prompt change can be judged rather than guessed at
+
+Requirements
+- Prompt engineering grounded in evaluation rather than intuition
+- Understanding of vector search, chunking and reranking trade-offs
+- Strong Python and comfort designing and consuming APIs
+
+Nice to have
+- Familiarity with TypeScript for the surrounding application layer
+- Experience running background jobs and queues in production
+
+What we offer
+- A yearly budget for conferences and training
+- Paid parental leave for all parents regardless of gender
+- Employee share scheme after twelve months
+
+Equal opportunity
+Banksia Health is an equal opportunity employer. We welcome applications from candidates of every background, and we will make reasonable adjustments at any stage of the process on request. We never ask candidates for payment, and we will only contact you from a banksiahealth.example address.",Melbourne,Banksia Health,2026-05-17,synthetic-corpus,,AI / Automation,synthetic,synthetic,2026-06-30

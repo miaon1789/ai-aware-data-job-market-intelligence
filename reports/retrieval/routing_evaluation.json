@@ -1,0 +1,59 @@
+{
+  "note": "routing_probes.jsonl was used to tune the router's patterns and is reported for completeness only. routing_heldout.jsonl was written afterwards and never tuned on; it is the honest estimate.",
+  "held_out": {
+    "overall": {
+      "correct": 15,
+      "trials": 18,
+      "accuracy": 0.8333,
+      "wilson_95_low": 0.6078,
+      "wilson_95_high": 0.9416
+    },
+    "aggregation_detection": {
+      "correct": 3,
+      "trials": 6,
+      "accuracy": 0.5,
+      "wilson_95_low": 0.1876,
+      "wilson_95_high": 0.8124
+    },
+    "branch_choice_lexical_vs_semantic": {
+      "correct": 12,
+      "trials": 12,
+      "accuracy": 1.0,
+      "wilson_95_low": 0.7575,
+      "wilson_95_high": 1.0
+    }
+  },
+  "tuned_on": {
+    "overall": {
+      "correct": 22,
+      "trials": 22,
+      "accuracy": 1.0,
+      "wilson_95_low": 0.8513,
+      "wilson_95_high": 1.0
+    },
+    "branch_choice_lexical_vs_semantic": {
+      "correct": 15,
+      "trials": 15,
+      "accuracy": 1.0,
+      "wilson_95_low": 0.7961,
+      "wilson_95_high": 1.0
+    }
+  },
+  "pooled_tuned_and_held_out": {
+    "branch_choice_lexical_vs_semantic": {
+      "correct": 27,
+      "trials": 27,
+      "accuracy": 1.0,
+      "wilson_95_low": 0.8754,
+      "wilson_95_high": 1.0
+    }
+  },
+  "comparison_with_break_even": {
+    "break_even_router_accuracy": 0.8794,
+    "held_out_lower_bound": 0.7575,
+    "held_out_lower_bound_clears_break_even": false,
+    "pooled_lower_bound": 0.8754,
+    "pooled_lower_bound_clears_break_even": false,
+    "verdict": "The point estimate clears the break-even but the held-out interval does not. Routing is the better bet on this evidence, not an established result; a larger lexical/semantic probe set is the cheapest way to settle it."
+  }
+}

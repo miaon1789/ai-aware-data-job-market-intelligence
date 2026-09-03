@@ -1,0 +1,6 @@
+stage,queries,p50_ms,p95_ms,mean_ms
+query_encode,73,18.1,21.94,17.52
+dense_scan,73,0.33,0.4,0.35
+lexical_bm25,73,28.29,32.19,27.07
+fusion,73,0.16,0.22,0.15
+rerank,73,334.82,408.23,338.03
