@@ -27,6 +27,7 @@ from job_market_intelligence.quality import (  # noqa: E402
     build_quality_report,
     filter_recent_ads,
 )
+from job_market_intelligence.relevance import filter_relevant_jobs  # noqa: E402
 from job_market_intelligence.seniority import classify_seniority  # noqa: E402
 from job_market_intelligence.skills import extract_mentions_for_jobs  # noqa: E402
 from scripts.generate_synthetic_data import generate_csv  # noqa: E402
@@ -47,6 +48,7 @@ def run(
     output_dir: Path,
     reports_dir: Path,
     max_age_days: int = 90,
+    domain_filter: bool = False,
 ) -> dict[str, object]:
     jobs = load_job_ads(input_path)
     original_rows = len(jobs)
@@ -60,6 +62,10 @@ def run(
     )
     jobs[["seniority", "seniority_evidence"]] = list(seniority)
     skill_mentions = extract_mentions_for_jobs(jobs)
+
+    domain_dropped = None
+    if domain_filter:
+        jobs, skill_mentions, domain_dropped = filter_relevant_jobs(jobs, skill_mentions)
 
     if input_path.resolve() == training_path.resolve():
         training_jobs = jobs
@@ -77,6 +83,8 @@ def run(
     jobs.to_csv(output_dir / "jobs_clean.csv", index=False)
     skill_mentions.to_csv(output_dir / "skill_mentions.csv", index=False)
     duplicate_audit.to_csv(output_dir / "duplicate_audit.csv", index=False)
+    if domain_dropped is not None:
+        domain_dropped.to_csv(output_dir / "domain_filtered_out.csv", index=False)
     model_result.predictions.to_csv(output_dir / "cross_validation_predictions.csv", index=False)
     save_model(model_result.model, output_dir / "role_classifier.joblib")
 
@@ -102,6 +110,7 @@ def run(
         "input_rows": original_rows,
         "age_filtered_rows": age_filtered_rows,
         "age_window_days": max_age_days,
+        "domain_filtered_out": 0 if domain_dropped is None else len(domain_dropped),
         "clean_rows": len(jobs),
         "duplicates_removed": len(duplicate_audit),
         "skill_mentions": len(skill_mentions),
@@ -127,6 +136,11 @@ def main() -> None:
         default=90,
         help="Retain ads posted within this many days of retrieval/dataset reference date",
     )
+    parser.add_argument(
+        "--domain-filter",
+        action="store_true",
+        help="Keep only data/IT/ML roles (drops unrelated graduate roles from broad queries)",
+    )
     args = parser.parse_args()
 
     synthetic_path = ROOT / "data/synthetic/job_ads.csv"
@@ -139,6 +153,7 @@ def main() -> None:
         args.output_dir,
         args.reports_dir,
         max_age_days=args.max_age_days,
+        domain_filter=args.domain_filter,
     )
     print(json.dumps(summary, indent=2))
 

@@ -36,6 +36,6 @@ def test_load_job_ads_normalises_city(tmp_path):
 
 def test_load_job_ads_reports_invalid_rows(tmp_path):
     row = valid_row()
-    row["city"] = "Brisbane"
+    row["city"] = "London"
     with pytest.raises(DataValidationError, match="row 2"):
         load_job_ads(write_csv(tmp_path, [row]))

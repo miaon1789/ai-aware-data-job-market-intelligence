@@ -7,6 +7,8 @@ from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 
+from .locations import SUPPORTED_CITIES, normalise_au_city
+
 RoleLabel = Literal[
     "Data Analyst",
     "Data Analyst / BI",
@@ -17,7 +19,6 @@ RoleLabel = Literal[
     "AI / Automation",
     "Other / Mixed",
 ]
-SUPPORTED_CITIES = {"Sydney", "Melbourne"}
 
 
 class JobAd(BaseModel):
@@ -38,10 +39,10 @@ class JobAd(BaseModel):
     @field_validator("city")
     @classmethod
     def validate_city(cls, value: str) -> str:
-        canonical = value.strip().title()
-        if canonical not in SUPPORTED_CITIES:
+        canonical = normalise_au_city(value)
+        if canonical is None:
             supported = ", ".join(sorted(SUPPORTED_CITIES))
-            raise ValueError(f"city must be one of: {supported}")
+            raise ValueError(f"city must be an Australian location (one of: {supported})")
         return canonical
 
 

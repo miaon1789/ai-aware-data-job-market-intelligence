@@ -21,6 +21,9 @@ REQUIRED_COLUMNS = {
     "role_label",
 }
 PRIVATE_PROVENANCE_COLUMNS = ("collection_query", "collection_group", "retrieved_at")
+# Full-text sources also carry a newline-delimited copy of the description for
+# structure-aware chunking. It is optional so Adzuna-only inputs stay valid.
+OPTIONAL_TEXT_COLUMNS = ("description_structured",)
 
 
 class DataValidationError(ValueError):
@@ -46,6 +49,8 @@ def load_job_ads(path: str | Path) -> pd.DataFrame:
             validated = record.model_dump(mode="json")
             for column in PRIVATE_PROVENANCE_COLUMNS:
                 validated[column] = str(row.get(column, "")).strip()
+            for column in OPTIONAL_TEXT_COLUMNS:
+                validated[column] = str(row.get(column, "")).strip() or validated["description"]
             records.append(validated)
         except ValidationError as exc:
             messages = "; ".join(

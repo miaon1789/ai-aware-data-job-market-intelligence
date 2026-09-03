@@ -22,6 +22,24 @@ def clean_text(value: str) -> str:
     return WHITESPACE_RE.sub(" ", str(value)).strip()
 
 
+def clean_structured_text(value: str) -> str:
+    """Collapse spacing inside lines while keeping one blank-line separator.
+
+    Structure-aware chunking splits on these line boundaries, so unlike
+    :func:`clean_text` this must not flatten the layout.
+    """
+
+    lines: list[str] = []
+    for line in str(value).split("\n"):
+        collapsed = " ".join(line.split())
+        if collapsed in {"", "-"}:
+            if lines and lines[-1] != "":
+                lines.append("")
+            continue
+        lines.append(collapsed)
+    return "\n".join(lines).strip()
+
+
 def canonical_text(value: str) -> str:
     """Create a conservative comparison form for duplicate detection."""
 
@@ -60,6 +78,12 @@ def deduplicate_job_ads(
     for column in ("title", "description", "company"):
         working[column] = working[column].map(clean_text)
     working["description"] = working["description"].map(redact_personal_contacts)
+    if "description_structured" in working.columns:
+        # Kept newline-delimited for chunking, but redacted on the same terms.
+        structured = working["description_structured"].map(clean_structured_text)
+        working["description_structured"] = structured.map(redact_personal_contacts).where(
+            structured.ne(""), working["description"]
+        )
     working["posted_at"] = pd.to_datetime(working["posted_at"]).dt.date.astype(str)
     working["duplicate_group"] = working.apply(_fingerprint, axis=1)
     working = working.sort_values(["posted_at", "job_id"], ascending=[False, True])

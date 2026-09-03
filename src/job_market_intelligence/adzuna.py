@@ -15,6 +15,8 @@ from urllib.request import Request, urlopen
 
 import pandas as pd
 
+from .preprocessing import clean_structured_text
+
 SEARCH_ENDPOINT = "https://api.adzuna.com/v1/api/jobs/au/search/{page}"
 TERMS_URL = "https://developer.adzuna.com/docs/terms_of_service"
 ATTRIBUTION_URL = "https://www.adzuna.com.au/"
@@ -77,31 +79,94 @@ class AdzunaAPIError(RuntimeError):
     """Raised without embedding credentials or request URLs in the message."""
 
 
+# Block-level tags that end a line when structure is preserved. Applicant
+# tracking systems mark up requirement lists with these, and flattening them
+# destroys the section boundaries that structure-aware chunking relies on.
+_BLOCK_TAGS = frozenset(
+    {
+        "article",
+        "blockquote",
+        "br",
+        "div",
+        "h1",
+        "h2",
+        "h3",
+        "h4",
+        "h5",
+        "h6",
+        "header",
+        "hr",
+        "li",
+        "ol",
+        "p",
+        "section",
+        "table",
+        "tr",
+        "ul",
+    }
+)
+# Tags that carry a section heading and so deserve a blank line before them.
+# <strong> and <b> are deliberately excluded: applicant tracking systems use
+# them for inline emphasis as often as for headings, and breaking on them
+# splits sentences mid-clause. A <strong> heading is almost always alone in its
+# own <p>, which already produces a line break.
+_HEADING_TAGS = frozenset({"h1", "h2", "h3", "h4", "h5", "h6"})
+
+
 class _TextExtractor(HTMLParser):
-    def __init__(self) -> None:
+    """Extract text, optionally keeping block boundaries as newlines."""
+
+    def __init__(self, *, preserve_structure: bool = False) -> None:
         super().__init__()
         self.parts: list[str] = []
         self.hidden_depth = 0
+        self.preserve_structure = preserve_structure
+
+    def _break(self, marker: str) -> None:
+        if self.parts:
+            self.parts.append(marker)
 
     def handle_starttag(self, tag: str, attrs) -> None:
-        if tag.lower() in {"script", "style"}:
+        name = tag.lower()
+        if name in {"script", "style"}:
             self.hidden_depth += 1
-        elif tag.lower() in {"p", "br", "li", "div"} and self.parts:
-            self.parts.append(" ")
+        elif not self.preserve_structure:
+            if name in {"p", "br", "li", "div"} and self.parts:
+                self.parts.append(" ")
+        elif name in _BLOCK_TAGS:
+            self._break("\n\n" if name in _HEADING_TAGS else "\n")
+            if name == "li":
+                self.parts.append("- ")
+        elif name in _HEADING_TAGS:
+            self._break("\n\n")
 
     def handle_endtag(self, tag: str) -> None:
-        if tag.lower() in {"script", "style"} and self.hidden_depth:
+        name = tag.lower()
+        if name in {"script", "style"} and self.hidden_depth:
             self.hidden_depth -= 1
+        elif self.preserve_structure and name in _HEADING_TAGS:
+            self._break("\n")
 
     def handle_data(self, data: str) -> None:
         if not self.hidden_depth:
             self.parts.append(data)
 
 
-def html_to_text(value: str) -> str:
-    parser = _TextExtractor()
+def html_to_text(value: str, *, preserve_structure: bool = False) -> str:
+    """Convert markup to text.
+
+    By default the result is a single whitespace-collapsed line, which is what
+    deduplication fingerprints and dictionary skill extraction expect. With
+    ``preserve_structure`` the block layout survives as newlines and ``- ``
+    bullets so that downstream chunking can split on real section boundaries.
+    """
+
+    parser = _TextExtractor(preserve_structure=preserve_structure)
     parser.feed(unescape(str(value)))
-    return " ".join("".join(parser.parts).split())
+    raw = "".join(parser.parts)
+    if not preserve_structure:
+        return " ".join(raw.split())
+    return clean_structured_text(raw)
 
 
 def _default_request_json(url: str, timeout: float) -> dict[str, object]:
