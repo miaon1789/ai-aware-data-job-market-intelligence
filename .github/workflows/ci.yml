@@ -94,6 +94,11 @@ jobs:
       - name: Full pipeline runs offline on the synthetic corpus
         run: |
           mkdir -p offline-data
+          # The container runs as uid 10001, and Linux bind mounts keep host
+          # ownership, so the mount point must be owned by that uid. macOS
+          # Docker Desktop maps ownership instead, which is why this passed
+          # locally and only failed on the Linux runner.
+          sudo chown 10001:10001 offline-data
           docker run --rm --network none -v "$PWD/offline-data:/app/data/private" \
             --entrypoint sh job-market-intelligence:ci -c '
             set -e
