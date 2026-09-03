@@ -144,6 +144,7 @@ docker-verify:
 # check that found the DuckDB extension download; nothing static would have.
 docker-offline-check:
 	@rm -rf .docker-offline && mkdir -p .docker-offline
+	@chmod 777 .docker-offline
 	@docker run --rm --network none -v $(PWD)/.docker-offline:/app/data/private \
 	  --entrypoint sh $(IMAGE) -c '\
 	  set -e; \
