@@ -62,10 +62,12 @@ def load_queries_from_payloads(payloads, tmp_path=None):
 
 
 def test_document_hash_is_stable_and_not_the_job_id():
-    assert document_hash("5771223129") == document_hash("5771223129")
-    assert document_hash("5771223129") != document_hash("5771223130")
+    # An invented id, not one from the corpus. A real advertisement id in a
+    # committed file is exactly what the published artefacts must not carry.
+    assert document_hash("1234567890") == document_hash("1234567890")
+    assert document_hash("1234567890") != document_hash("1234567891")
     assert len(document_hash("x")) == 20
-    assert "5771223129" not in document_hash("5771223129")
+    assert "1234567890" not in document_hash("1234567890")
 
 
 def test_alias_match_respects_word_boundaries():

@@ -121,6 +121,15 @@ It cannot export job IDs, titles, descriptions, companies, URLs, source
 sentences or collection queries. Do not manually join those fields back into a
 public table.
 
+An empty table is a valid result, and the current release has one.
+`data/public/skill_summary.csv` holds a header and no rows: across the 244
+labelled advertisements the largest city/role/skill cell is 7 advertisements,
+which is below the floor of ten, so every cell was suppressed. That is the
+threshold working rather than a failed export. The public dashboard reports it
+as "no skill cells met the publication threshold". Publishing skill shares
+would need a larger labelled sample, not a lower threshold, which for real data
+the exporter refuses to accept.
+
 Review `data/public/` before publishing, then run the aggregate-only dashboard:
 
 ```bash

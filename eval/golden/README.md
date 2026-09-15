@@ -12,6 +12,14 @@ derived by rule rather than written by hand.
 | `routing_heldout.jsonl` | yes | 18 routing questions written after tuning and never tuned on |
 | `data/private/retrieval/golden/resolved.jsonl` | **no** | The same judgements with real advertisement ids |
 
+The hash is a de-identifier, not a secret. It is unsalted, and advertisement
+ids are short numeric strings, so anyone holding the id space can recompute the
+mapping. That is deliberate. Salting would make the committed file
+irreproducible for a reader running the pipeline on their own corpus, and the
+most the mapping recovers is which public listing matched a public query. The
+control that matters is the one above it in the table: advertisement *text*
+and the ids that resolve to it stay in `data/private/`.
+
 ## Why rules instead of hand-written judgements
 
 Writing 61 × ~25 relevance judgements by hand would take most of a day, would

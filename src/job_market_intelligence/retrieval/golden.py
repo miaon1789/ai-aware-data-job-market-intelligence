@@ -34,10 +34,19 @@ JUDGED_POOLS = ("all", "labelled")
 
 
 def document_hash(job_id: str) -> str:
-    """Stable, non-reversible document identifier for published artefacts.
+    """Stable, non-resolvable document identifier for published artefacts.
 
     Matches the 20-character convention already used by the annotation
-    manifest, so published evaluation files never carry a resolvable job id.
+    manifest, so published evaluation files never carry a job id that resolves
+    against the private corpus or against the source site.
+
+    This is a de-identifier, not a one-way function over a secret. The digest
+    is unsalted and advertisement ids are short numeric strings, so anyone
+    holding the id space can recompute the mapping. That is an accepted trade:
+    the file stays reproducible by a reader who has their own corpus, and the
+    most an attacker recovers is which public listing matched a public query.
+    Salting would buy secrecy the published artefacts do not need and would
+    cost the reproducibility they exist for.
     """
 
     return hashlib.sha256(str(job_id).encode("utf-8")).hexdigest()[:20]
