@@ -28,6 +28,8 @@ PRIVATE_PATHS = (
     "data/processed/",
     "data/public/",
     "data/labels/",
+    "dbt/target/",
+    "dbt/logs/",
     ".env",
     ".env.*",
 )
@@ -38,6 +40,9 @@ BUILD_EXCLUDED_PATHS = (
     ".git/",
     ".github/",
     ".venv/",
+    ".venv-dbt/",
+    "dbt/dbt_packages/",
+    "dbt/.user.yml",
     ".pytest_cache/",
     ".ruff_cache/",
     ".claude/",

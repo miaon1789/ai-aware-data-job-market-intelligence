@@ -1,0 +1,4 @@
+# Locally verified combination. Separate from application dependencies.
+dbt-core==1.10.23
+dbt-duckdb==1.11.0
+duckdb==1.5.5

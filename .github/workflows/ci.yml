@@ -110,3 +110,19 @@ jobs:
             python scripts/build_retrieval_index.py \
               --embedding-model BAAI/bge-small-en-v1.5 >/dev/null
             echo "chunks and both indexes built with no network"'
+
+  dbt:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install analytics dependencies
+        run: python -m pip install -e ".[dev]" -r dbt/requirements.txt
+      - name: Verify models, documentation, parity and quality gates on synthetic data
+        env:
+          RUN_DBT_TESTS: "1"
+          DBT_SEND_ANONYMOUS_USAGE_STATS: "false"
+        run: python -m pytest tests/test_dbt_analytics.py -q

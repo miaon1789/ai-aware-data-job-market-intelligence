@@ -5,7 +5,11 @@ advertisements, where every design decision is backed by a measurement instead
 of an assumption. Three of those measurements argued against the design that
 was already built, and the system changed.**
 
-`Python` · `DuckDB` · `FastAPI` · `sentence-transformers` · `MCP` · `Docker`
+`Python` · `DuckDB` · `dbt Core` · `FastAPI` · `sentence-transformers` · `MCP` · `Docker`
+
+An optional [dbt + DuckDB analytics layer](dbt/README.md) adds staging models,
+analytical marts, column documentation and tested parity with the original SQL
+views. It runs locally and retains Python preprocessing upstream.
 
 The repository has two parts that share one corpus.
 
@@ -137,6 +141,7 @@ searched. The whole dense index is 3.5 MB.
 
 - [Key findings](#key-findings)
 - [Part 1: data mining and labelling](#part-1-data-mining-and-labelling)
+  - [Optional dbt analytics layer](#optional-dbt-analytics-layer)
 - [Part 2: search and question answering](#part-2-search-and-question-answering)
   - [Corpus and chunking](#corpus-and-chunking)
   - [The test set](#the-test-set)
@@ -258,6 +263,32 @@ The pipeline writes `data/synthetic/job_ads.csv`, builds cleaned tables in
 `data/processed/job_market.duckdb`, saves the baseline model to
 `data/processed/role_classifier.joblib`, and writes metrics to
 `reports/model_metrics.json`.
+
+## Optional dbt analytics layer
+
+The [dbt project](dbt/README.md) rebuilds two existing analytical summaries from
+processed pipeline outputs in a separate local DuckDB database. Two staging
+models normalise fields and remove repeated skill mentions. Two marts calculate
+role/city counts and skill shares. The skill-share denominator includes ads with
+no extracted skill mentions.
+
+The layer includes column-level documentation and 31 data tests covering nulls,
+unique identifiers, accepted values, referential integrity, valid shares and
+bidirectional reconciliation with the original SQL views. A synthetic integration
+test injects duplicate IDs, blank cities, invalid contexts and orphan references
+to verify failure detection and downstream model skips. A dedicated CI job runs
+this check without licensed data.
+
+[Local verification results](reports/dbt_validation.json) cover 54 synthetic ads,
+a 134-row local processed dataset and the 705-ad retrieval corpus. The 134-row
+input is a separate local dataset, not a replacement for the 421-ad study corpus.
+Python still owns redaction, fuzzy deduplication, role labels and skill extraction.
+The existing application does not yet consume these dbt marts, and real-data
+marts remain private and unsuppressed. This is a local analytics-layer addition,
+not a full pipeline replacement or cloud deployment.
+
+See the [setup, model definitions and verification commands](dbt/README.md) to
+reproduce the run and generate the dbt documentation and dependency graph.
 
 ## Using your own data
 

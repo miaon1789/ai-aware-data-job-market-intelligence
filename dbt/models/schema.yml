@@ -1,0 +1,158 @@
+version: 2
+sources:
+- name: pipeline
+  schema: main
+  description: Narrow local copy of processed Python outputs. No raw advertisement
+    text is loaded. Not a public release.
+  tables:
+  - name: jobs
+    description: One retained ad after Python deduplication and classification.
+    columns:
+    - name: job_id
+      description: Upstream retained advertisement ID.
+      data_tests:
+      - not_null
+      - unique
+  - name: skill_mentions
+    description: Upstream mentions, potentially several sentences for one skill.
+  - name: role_city_summary
+    description: Unmodified reference view from analytics.build_database, used for
+      reconciliation.
+  - name: role_skill_summary
+    description: Unmodified reference view. Denominator includes jobs with no skill
+      mentions.
+models:
+- name: stg_jobs
+  description: Normalise blanks and types. One row per upstream retained ad. Does
+    not redo fuzzy deduplication.
+  columns:
+  - name: job_id
+    description: Identifier of one advertisement retained by the upstream deduplication
+      pipeline.
+    data_tests:
+    - not_null
+    - unique
+  - name: city
+    description: Canonical Australian city or remote/other Australia label.
+    data_tests:
+    - not_null
+  - name: role
+    description: Human role label where supplied, otherwise upstream model prediction.
+    data_tests:
+    - not_null
+    - accepted_values:
+        arguments:
+          values:
+          - Data Analyst
+          - Data Analyst / BI
+          - Data Scientist
+          - Data Scientist / ML
+          - Data Engineer
+          - ML/AI Engineer
+          - AI / Automation
+          - Other / Mixed
+  - name: seniority
+    description: Rule-based seniority signal, not a verified employer eligibility
+      requirement.
+    data_tests:
+    - not_null
+    - accepted_values:
+        arguments:
+          values:
+          - Non-Junior
+          - Graduate / Junior
+          - Unclear
+  - name: posted_at
+    description: Advertisement posting date, parsed as DATE.
+    data_tests:
+    - not_null
+- name: stg_skill_mentions
+  description: Distinct ad/skill/category/context tuples. Sentence-level repetition
+    is removed.
+  columns:
+  - name: job_id
+    description: Retained advertisement containing the skill.
+    data_tests:
+    - not_null
+    - relationships:
+        arguments:
+          to: ref('stg_jobs')
+          field: job_id
+  - name: skill
+    description: Canonical skill dictionary label.
+    data_tests:
+    - not_null
+  - name: category
+    description: Category assigned by the upstream skill dictionary.
+    data_tests:
+    - not_null
+  - name: context
+    description: Mention context. Negated and alternative mentions remain distinct
+      from requirements.
+    data_tests:
+    - not_null
+    - accepted_values:
+        arguments:
+          values: &id001
+          - required
+          - preferred
+          - negated
+          - alternative
+          - mentioned
+- name: mart_role_city
+  description: One row per city/role/seniority. Sample advertisement counts, not population
+    estimates. Internal unsuppressed analysis only.
+  columns:
+  - name: city
+    description: Canonical city.
+    data_tests:
+    - not_null
+  - name: role
+    description: Upstream analysis role.
+    data_tests:
+    - not_null
+  - name: seniority
+    description: Upstream seniority signal.
+    data_tests:
+    - not_null
+  - name: job_count
+    description: Number of retained advertisements in this city/role/seniority group.
+    data_tests:
+    - not_null
+- name: mart_role_skill
+  description: One row per city/role/skill/category/context. Share denominator is
+    all ads in the city/role, including ads with no extracted skills. Internal unsuppressed
+    analysis only.
+  columns:
+  - name: role
+    description: Upstream analysis role.
+    data_tests:
+    - not_null
+  - name: city
+    description: Canonical city.
+    data_tests:
+    - not_null
+  - name: skill
+    description: Canonical skill.
+    data_tests:
+    - not_null
+  - name: category
+    description: Skill category.
+    data_tests:
+    - not_null
+  - name: context
+    description: Mention context.
+    data_tests:
+    - not_null
+    - accepted_values:
+        arguments:
+          values: *id001
+  - name: ads_with_skill
+    description: Distinct ads with this skill/category/context.
+    data_tests:
+    - not_null
+  - name: share_of_ads
+    description: ads_with_skill divided by all distinct ads in the city/role. Unrounded
+      fraction, not a percentage.
+    data_tests:
+    - not_null

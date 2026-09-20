@@ -9,6 +9,8 @@ data/external/
 data/processed/
 data/public/
 data/labels/
+dbt/target/
+dbt/logs/
 .env
 .env.*
 
@@ -16,6 +18,9 @@ data/labels/
 .git/
 .github/
 .venv/
+.venv-dbt/
+dbt/dbt_packages/
+dbt/.user.yml
 .pytest_cache/
 .ruff_cache/
 .claude/

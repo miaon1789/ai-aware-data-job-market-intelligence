@@ -54,3 +54,10 @@ DOCKER_BRIEF.md
 docs/*_BRIEF.md
 docs/*_GUIDE.md
 scripts/generate_linkedin_cover.py
+
+# Optional local dbt environment and generated documentation/logs.
+.venv-dbt/
+dbt/target/
+dbt/logs/
+dbt/dbt_packages/
+dbt/.user.yml
