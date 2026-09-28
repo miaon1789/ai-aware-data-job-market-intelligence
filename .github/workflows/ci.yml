@@ -21,6 +21,17 @@ jobs:
         run: ruff check .
       - name: Test
         run: pytest -q
+      - name: Retrieval validation evidence
+        run: python scripts/validate_retrieval.py quick
+      - name: Upload aggregate validation evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: retrieval-validation-summary
+          path: |
+            reports/validation/*/summary.json
+            reports/validation/*/report.md
+          if-no-files-found: ignore
       - name: Run pipeline
         run: python scripts/run_pipeline.py
 

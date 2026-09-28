@@ -14,6 +14,7 @@ from job_market_intelligence.retrieval.evaluation import (
     resolution_limit,
     routing_break_even,
     score_query,
+    wilson_interval,
 )
 
 
@@ -59,8 +60,15 @@ def test_ndcg_is_one_for_a_perfect_ranking_and_normalised_for_set_size():
 
 def test_score_query_reports_every_metric():
     scores = score_query({"a"}, ["a", "b"], ks=(1, 2))
-    assert set(scores) == {"mrr", "recall@1", "precision@1", "ndcg@1",
-                           "recall@2", "precision@2", "ndcg@2"}
+    assert set(scores) == {
+        "mrr",
+        "recall@1",
+        "precision@1",
+        "ndcg@1",
+        "recall@2",
+        "precision@2",
+        "ndcg@2",
+    }
 
 
 def test_bootstrap_interval_brackets_the_mean_and_is_reproducible():
@@ -102,9 +110,7 @@ def test_aggregate_scores_reports_means_with_intervals():
 
 
 def test_aggregate_scores_splits_by_query_class():
-    result = aggregate_scores(
-        _per_query_frame(), group_columns=["query_class"], iterations=200
-    )
+    result = aggregate_scores(_per_query_frame(), group_columns=["query_class"], iterations=200)
     lexical = result[result.query_class.eq("lexical")].iloc[0]
     semantic = result[result.query_class.eq("semantic")].iloc[0]
     # The overall mean (0.525) describes neither class.
@@ -139,16 +145,20 @@ def _two_config_frame():
         lexical = index < 3
         rows.append(
             {
-                "config": "A", "query_id": f"q{index}",
+                "config": "A",
+                "query_id": f"q{index}",
                 "query_class": "lexical" if lexical else "semantic",
-                "ndcg@10": 0.9 if lexical else 0.1, "recall@10": 0.9 if lexical else 0.1,
+                "ndcg@10": 0.9 if lexical else 0.1,
+                "recall@10": 0.9 if lexical else 0.1,
             }
         )
         rows.append(
             {
-                "config": "B", "query_id": f"q{index}",
+                "config": "B",
+                "query_id": f"q{index}",
                 "query_class": "lexical" if lexical else "semantic",
-                "ndcg@10": 0.5 if lexical else 0.5, "recall@10": 0.5 if lexical else 0.5,
+                "ndcg@10": 0.5 if lexical else 0.5,
+                "recall@10": 0.5 if lexical else 0.5,
             }
         )
     return pd.DataFrame(rows)
@@ -180,9 +190,14 @@ def test_paired_comparison_by_class_finds_what_the_overall_mean_hides():
 def test_paired_comparison_marks_an_interval_spanning_zero_as_indistinguishable():
     frame = pd.DataFrame(
         [
-            {"config": c, "query_id": f"q{i}", "query_class": "lexical",
-             "ndcg@10": 0.5 + (0.01 if c == "A" else 0.0) * (1 if i % 2 else -1)}
-            for i in range(10) for c in ("A", "B")
+            {
+                "config": c,
+                "query_id": f"q{i}",
+                "query_class": "lexical",
+                "ndcg@10": 0.5 + (0.01 if c == "A" else 0.0) * (1 if i % 2 else -1),
+            }
+            for i in range(10)
+            for c in ("A", "B")
         ]
     )
     assert not paired_comparison(frame, "A", "B", iterations=500).iloc[0]["distinguishable"]
@@ -217,10 +232,46 @@ def test_routing_break_even_demands_a_perfect_router_when_routing_cannot_help():
     frame = pd.DataFrame(
         [
             {"config": c, "query_id": f"q{i}", "query_class": "lexical", "ndcg@10": 0.5}
-            for i in range(4) for c in ("A", "B")
+            for i in range(4)
+            for c in ("A", "B")
         ]
     )
     result = routing_break_even(
         frame, branch_for_class={"lexical": "A"}, fallback_config="B", fusion_config="B"
     )
     assert np.isnan(result["break_even_router_accuracy"])
+
+
+def test_wilson_interval_does_not_treat_twelve_correct_answers_as_certainty():
+    low, high = wilson_interval(12, 12)
+    assert low == pytest.approx(0.7574992425)
+    assert high == pytest.approx(1.0)
+    assert low < 0.879  # The published routing break-even accuracy.
+
+
+@pytest.mark.parametrize(
+    "successes,trials,expected",
+    [(0, 12, (0.0, 0.2425007575)), (6, 12, (0.2537781704, 0.7462218296)), (0, 0, (0.0, 1.0))],
+)
+def test_wilson_interval_boundary_and_partial_success_cases(successes, trials, expected):
+    assert wilson_interval(successes, trials) == pytest.approx(expected)
+
+
+@pytest.mark.parametrize("successes", [-1, 13])
+def test_wilson_interval_rejects_impossible_success_counts(successes):
+    with pytest.raises(ValueError, match="successes"):
+        wilson_interval(successes, 12)
+
+
+def test_resolved_query_loader_rejects_duplicates_instead_of_overwriting(tmp_path):
+    from scripts.run_retrieval_ablation import load_resolved
+
+    path = tmp_path / "resolved.jsonl"
+    path.write_text('{"query_id":"q1","relevant":["a"]}\n\n{"query_id":"q2","relevant":["b"]}\n')
+    resolved = load_resolved(path)
+    assert list(resolved) == ["q1", "q2"]
+    assert resolved["q1"]["relevant"] == ["a"]
+    with path.open("a") as stream:
+        stream.write('{"query_id":"q1","relevant":["replacement"]}\n')
+    with pytest.raises(ValueError, match="duplicate resolved query_id"):
+        load_resolved(path)

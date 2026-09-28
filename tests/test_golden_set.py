@@ -154,7 +154,7 @@ def test_loader_rejects_duplicate_ids_and_unknown_rule_types(tmp_path):
 def test_committed_golden_set_is_valid_and_balanced():
     golden = load_queries(ROOT / "eval/golden/queries.jsonl")
     assert len(golden) >= 50
-    for query_class in ("lexical", "semantic", "aggregation"):
+    for query_class in ("lexical", "semantic", "aggregation", "mixed"):
         assert len(golden.by_class(query_class)) >= 10
 
 

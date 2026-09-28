@@ -40,6 +40,15 @@ purge-private:
 
 check: lint test
 
+.PHONY: validate-retrieval validate-retrieval-full
+validate-retrieval:
+	.venv/bin/python scripts/validate_retrieval.py quick
+
+# Capture a baseline explicitly before candidate changes. Pass its run directory.
+validate-retrieval-full:
+	@test -n "$(BASELINE)" || (echo "Set BASELINE to a captured baseline run directory"; exit 2)
+	.venv/bin/python scripts/validate_retrieval.py full --baseline "$(BASELINE)"
+
 # --- Part 2: retrieval, evaluation and services -------------------------------
 # Rebuild the private retrieval corpus from the collectors. Needs Adzuna
 # credentials in .env; the ATS boards are public.

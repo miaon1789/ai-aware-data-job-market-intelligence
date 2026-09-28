@@ -264,6 +264,17 @@ The pipeline writes `data/synthetic/job_ads.csv`, builds cleaned tables in
 `data/processed/role_classifier.joblib`, and writes metrics to
 `reports/model_metrics.json`.
 
+## Retrieval validation workflow
+
+Run `make validate-retrieval` for lightweight checks with a new evidence directory,
+test counts and hashes. The Claude Code skill `/validate-retrieval quick` adds a
+read-only second review. A post-edit hook runs a smaller check automatically.
+Real benchmark comparisons require an explicitly captured baseline and a `full`
+invocation. Quick checks report the real benchmark as NOT RUN.
+
+See [the validation workflow](docs/RETRIEVAL_VALIDATION.md) for baseline capture,
+paired regression rules, privacy boundaries and skill, hook and reviewer behavior.
+
 ## Optional dbt analytics layer
 
 The [dbt project](dbt/README.md) rebuilds two existing analytical summaries from
@@ -529,7 +540,7 @@ search at all.
 | BM25 minus blended plus rerank, keyword | +0.004 | [0.000, +0.011] | cannot be told apart, wins 2, loses 0 |
 | Routed minus blended, keyword | +0.088 | [+0.043, +0.142] | routed better |
 | Routed minus blended, overall | +0.027 | [+0.001, +0.055] | routed better, barely |
-| **Routed minus blended, mixed** | **-0.029** | **[-0.071, +0.000]** | **routed worse** |
+| Routed minus blended, mixed | -0.029 | [-0.0712, +0.0003] | point estimate lower, no clear difference detected |
 | Routed minus blended plus rerank, mixed | -0.128 | [-0.217, -0.042] | **routed clearly worse** |
 | Routed minus blended plus rerank, overall | -0.026 | [-0.057, +0.005] | cannot be told apart, at 1/20 the cost |
 | Dense minus blended, keyword | -0.352 | [-0.458, -0.250] | dense much worse, **loses 19 of 22** |
@@ -540,6 +551,9 @@ with 3 relevant advertisements and one with 81 score nothing alike, so two
 overlapping per-system intervals do not mean two systems are equal. The BM25
 versus blended keyword result is a case where the paired test separates them
 and the summary table does not.
+
+These historical comparisons use unadjusted 95% intervals. The new validation
+workflow defines its comparison family and adjustment before execution.
 
 **Routing depends on the classifier, and the condition is not comfortably met.**
 Solving for the accuracy where routing and blending break even gives **87.9%**.
@@ -556,12 +570,13 @@ settled result. Growing the probe set is the cheapest way to settle it. Forty
 correct out of forty would put the lower bound at 0.912 and clear the bar
 properly. These numbers come from `scripts/evaluate_routing.py`.
 
-**Chunk size makes no difference.** 256, 512 and 1024 tokens score 0.900, 0.891
+**The observed chunk-size differences are small.** 256, 512 and 1024 tokens score 0.900, 0.891
 and 0.891, with intervals that almost fully overlap. Section-aware chunking is
 the reason. Sections are shorter than the window, so the section boundary
 decides the split and the token budget never binds. The median chunk stays near
 179 tokens whichever budget is set. The result is still useful, because it says
-this setting does not need tuning and the effort belongs elsewhere.
+the observed effect is small. Overlapping separate intervals alone do not establish
+equivalence between chunk sizes.
 
 **The smaller embedding model is better.** bge-small beats all-mpnet-base-v2 on
 keyword queries, 0.891 against 0.787, and ties on paraphrase queries, while
@@ -581,10 +596,11 @@ produced the skill data. Dense search scores 0.508 on dictionary terms and
 behave the same, so the finding is about search, not about a circular test set.
 
 **How much of this is real?** The confidence interval on the baseline's
-recall@10 has a half-width of 0.076. Differences smaller than about 8 points
-sit inside the noise of a 73-query set. The gap between dense search and BM25
-on keyword queries is 0.44 nDCG, which is nearly six times that. The chunk size
-differences are 0.009, which is about a tenth of it.
+recall@10 has a half-width of 0.076. This describes uncertainty in that one mean.
+It is not a minimum detectable difference, a threshold for nDCG, or a constant
+implied by 73 queries. Use a paired interval for each comparison. An interval
+containing zero means no clear difference was detected, not that the systems
+are equivalent or that a change is only noise.
 
 ## What search cannot answer
 
@@ -968,9 +984,9 @@ excerpt is not evidence the job does not need it. This also skews the test set:
 against 33.5% of the corpus. The main findings survive that split, checked both
 ways, but absolute scores would be lower on a corpus of excerpts alone.
 
-**73 queries resolve differences of about 8 points, no finer.** Rows in the
-results table closer than that are not distinguishable. The paired comparisons
-are more sensitive and are what the findings rest on.
+**73 queries leave substantial uncertainty.** Detectability depends on the
+distribution of paired query differences. There is no universal 8-point limit.
+Small groups and multiple comparisons also limit the strength of the findings.
 
 **Answer quality is not measured end to end.** Citations are checked
 mechanically, so an invented advertisement id is caught, but nobody has

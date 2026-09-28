@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "metric": "ndcg@10",
+  "direction": "higher_is_better",
+  "query_classes": ["lexical", "semantic", "mixed", "aggregation"],
+  "family_alpha": 0.05,
+  "multiple_comparisons": "bonferroni",
+  "bootstrap_iterations": 20000,
+  "seed": 42,
+  "minimum_queries_per_class": 2,
+  "retrieval_config": {
+    "chunk_tokens": 512,
+    "overlap_ratio": 0.1,
+    "mode": "hybrid",
+    "embedding_model": "BAAI/bge-small-en-v1.5",
+    "rrf_k": 60,
+    "rerank": false,
+    "rerank_model": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+    "retrieval_depth": 200,
+    "candidate_pool": 50,
+    "top_k": 10
+  }
+}

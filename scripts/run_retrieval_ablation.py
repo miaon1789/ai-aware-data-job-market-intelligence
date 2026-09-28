@@ -62,6 +62,8 @@ def load_resolved(path: Path) -> dict[str, dict[str, object]]:
     for line in path.read_text(encoding="utf-8").splitlines():
         if line.strip():
             row = json.loads(line)
+            if row["query_id"] in resolved:
+                raise ValueError(f"duplicate resolved query_id: {row['query_id']}")
             resolved[row["query_id"]] = row
     return resolved
 
