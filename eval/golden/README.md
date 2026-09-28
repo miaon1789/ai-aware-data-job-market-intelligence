@@ -39,7 +39,7 @@ project had already done and validated.
 
 ## Query classes
 
-Metrics are always reported per class. An overall mean across these three would
+Metrics are always reported per class. An overall mean across these four would
 describe none of them.
 
 - **lexical** (22) — a named tool or technology: `dbt`, `Terraform`, `Power BI`.
@@ -100,11 +100,13 @@ reclassified as aggregation. Asking a ranker to surface most of the corpus is a
 population question wearing a search question's clothes.
 
 **73 queries is a small evaluation set.** The bootstrap half-width on the
-baseline configuration's recall@10 is **0.076**. Differences smaller than about
-8 points are inside the resampling noise of a set this size and should not be
-read as real. Per-class intervals are published with every figure, and the
-paired tests in `reports/retrieval/paired_comparisons.csv` are more sensitive
-than comparing two separate intervals.
+baseline configuration's recall@10 is **0.076**. It describes uncertainty in that
+one mean, not a minimum detectable difference or an 8-point regression threshold.
+Use paired intervals to compare configurations. An interval containing zero
+means no clear difference was detected and does not establish equivalence.
+Historical paired reports use unadjusted 95% intervals. The new
+[validation workflow](../../docs/RETRIEVAL_VALIDATION.md) prespecifies a five-test
+family and uses Bonferroni-adjusted intervals.
 
 **The mixed class is the smallest and the most important to grow.** Twelve
 queries establish that routing has a failure mode on blended constraints, not

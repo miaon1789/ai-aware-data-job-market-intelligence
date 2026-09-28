@@ -16,11 +16,12 @@ import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
 JOBS = ROOT / "data/private/retrieval/jobs_clean.csv"
-PUBLISHED_DIRECTORIES = (ROOT / "eval", ROOT / "reports/retrieval")
+PUBLISHED_DIRECTORIES = (ROOT / "eval", ROOT / "reports/retrieval", ROOT / "reports/validation")
 MUST_STAY_PRIVATE = (
     "data/private/retrieval/golden/resolved.jsonl",
     "data/private/retrieval/chunks",
     "data/private/retrieval/index",
+    "data/private/validation",
 )
 
 
@@ -51,14 +52,15 @@ def test_published_artefacts_contain_no_advertisement_ids():
 @pytest.mark.skipif(not JOBS.exists(), reason="private corpus is not present")
 def test_published_artefacts_contain_no_advertisement_text():
     jobs = pd.read_csv(JOBS, dtype=str, keep_default_na=False)
-    # A distinctive sentence from each of a sample of advertisements.
+    # Normalize whitespace and check a fragment from every advertisement.
     fragments = [
         " ".join(str(description).split()[:8])
-        for description in jobs["description"].head(40)
+        for description in jobs["description"]
         if len(str(description).split()) >= 8
     ]
     published = {
-        path: path.read_text(encoding="utf-8", errors="replace") for path in published_files()
+        path: " ".join(path.read_text(encoding="utf-8", errors="replace").split())
+        for path in published_files()
     }
     for fragment in fragments:
         for path, text in published.items():

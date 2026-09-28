@@ -5,10 +5,9 @@ for roles requiring dbt is answered by an advertisement, and returning three
 chunks of the same advertisement is one hit, not three. Rankings are therefore
 collapsed to their first occurrence of each ``job_id`` before scoring.
 
-Every aggregate is reported with a bootstrap interval over queries. With an
-evaluation set of a few dozen queries, differences of a couple of points are
-indistinguishable from resampling noise, and a table that hides that invites
-exactly the over-reading it should prevent.
+Every aggregate is reported with a bootstrap interval over queries. Differences
+between configurations require a paired interval. An interval containing zero
+does not establish equivalence or prove the absence of regression.
 """
 
 from __future__ import annotations
@@ -157,11 +156,7 @@ def aggregate_scores(
 
 
 def resolution_limit(per_query: pd.DataFrame, metric: str = "recall@10", **kwargs) -> float:
-    """Half-width of the bootstrap interval: the smallest credible difference.
-
-    Reported in the README so that readers can tell which rows of the ablation
-    table actually differ and which merely look different.
-    """
+    """Single-configuration mean interval half-width, not a detection threshold."""
 
     if metric not in per_query.columns:
         raise ValueError(f"metric not present: {metric}")
@@ -180,7 +175,7 @@ def paired_comparison(
     alpha: float = 0.05,
     seed: int = 42,
 ) -> pd.DataFrame:
-    """Compare two configurations on the queries they both ran.
+    """Compare two configurations on identical, unique query sets.
 
     Two overlapping confidence intervals do not mean two systems are
     indistinguishable: the configurations were run on the *same* queries, so
@@ -194,18 +189,30 @@ def paired_comparison(
     queries is it ever worse".
     """
 
-    if metric not in per_query.columns:
-        raise ValueError(f"metric not present: {metric}")
+    required = {"config", "query_id", metric, *group_columns}
+    if not required.issubset(per_query.columns):
+        raise ValueError(f"missing comparison columns: {sorted(required - set(per_query.columns))}")
+    if config_a == config_b:
+        raise ValueError("comparison requires distinct configuration identities")
     frames = {}
     for config in (config_a, config_b):
         part = per_query[per_query["config"].eq(config)]
         if part.empty:
             raise ValueError(f"configuration not present: {config}")
+        if part["query_id"].isna().any() or part["query_id"].duplicated().any():
+            raise ValueError("query ids must be present and unique per configuration")
+        if not np.isfinite(part[metric].to_numpy(dtype=float)).all():
+            raise ValueError("comparison scores must be finite")
         frames[config] = part.set_index("query_id")
 
-    shared = frames[config_a].index.intersection(frames[config_b].index)
-    if shared.empty:
-        raise ValueError("the two configurations share no queries")
+    shared = frames[config_a].index
+    if set(shared) != set(frames[config_b].index):
+        raise ValueError("the two configurations must contain identical query ids")
+    if group_columns:
+        left_labels = frames[config_a].loc[shared, list(group_columns)]
+        right_labels = frames[config_b].loc[shared, list(group_columns)]
+        if left_labels.isna().any().any() or not left_labels.equals(right_labels):
+            raise ValueError("query group labels must be present and identical")
 
     groups: list[tuple[dict[str, object], pd.Index]] = [({}, shared)]
     if group_columns:
@@ -228,11 +235,11 @@ def paired_comparison(
                 "config_a": config_a,
                 "config_b": config_b,
                 "queries": int(len(index)),
-                "mean_a": round(float(np.nanmean(left)), 4),
-                "mean_b": round(float(np.nanmean(right)), 4),
-                "mean_difference": round(float(np.nanmean(difference)), 4),
-                "difference_lo": round(low, 4),
-                "difference_hi": round(high, 4),
+                "mean_a": float(np.mean(left)),
+                "mean_b": float(np.mean(right)),
+                "mean_difference": float(np.mean(difference)),
+                "difference_lo": low,
+                "difference_hi": high,
                 # An interval excluding zero is the only case where the two
                 # configurations are actually told apart by this evaluation set.
                 "distinguishable": bool(low > 0 or high < 0),
