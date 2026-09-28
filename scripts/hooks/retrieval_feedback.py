@@ -92,6 +92,8 @@ def handle(event: dict, root: Path) -> dict | None:
                 raise ValueError("runner exit code disagrees with its summary")
             return feedback(
                 f"Retrieval hook ({summary['run_id']}): {status} for the hook test selection. "
+                "Only the selected tests were checked. "
+                "Answer quality: NOT RUN (not measured end to end). "
                 f"Real benchmark: NOT RUN. Evidence: {summary['report']}. "
                 "Use /validate-retrieval quick for the full lightweight check."
             )

@@ -52,6 +52,7 @@ def write_json(path: Path, value: object) -> None:
 
 
 def check(name: str, status: str, reason: str, *, required: bool = True, **details) -> dict:
+    """Use controlled public text for reason. Keep raw diagnostics in private_detail."""
     if status not in STATUSES:
         raise ValueError("unknown check status")
     return {"name": name, "status": status, "reason": reason, "required": required, **details}
@@ -359,6 +360,7 @@ def render_report(manifest: dict, checks: list[dict], comparisons: list[dict]) -
         "",
         f"Run: {manifest['run_id']}",
         f"Mode: {manifest['mode']}",
+        f"Profile: {manifest.get('profile', 'unavailable')}",
         f"Check status: {overall_status(checks)}",
         "",
         f"Code commit: {code.get('commit', 'unavailable')}",
@@ -369,11 +371,22 @@ def render_report(manifest: dict, checks: list[dict], comparisons: list[dict]) -
         "",
         "PASS means completed without a preset failure condition. It does not prove",
         "equivalence, absence of regression, or model safety.",
+        "Answer quality has not been measured end to end, including after prompt changes.",
         "",
-        "| Check | Status | Required |",
-        "|---|---|---|",
+        "| Check | Status | Required | Reason |",
+        "|---|---|---|---|",
     ]
-    lines.extend(f"| {c['name']} | {c['status']} | {c['required']} |" for c in checks)
+    for item in checks:
+        reason = item["reason"].replace("|", "\\|").replace("\n", " ").replace("\r", " ")
+        lines.append(f"| {item['name']} | {item['status']} | {item['required']} | {reason} |")
+    targets = manifest.get("test_targets", [])
+    if targets:
+        lines += ["", f"Selected pytest targets ({len(targets)}):", ""]
+        lines.extend(f"- `{target}`" for target in targets)
+        lines += [
+            "",
+            "PASS covers these selected checks only, not every behavior affected by an edit.",
+        ]
     for item in checks:
         if "counts" in item:
             counts = item["counts"]

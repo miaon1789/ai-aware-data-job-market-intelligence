@@ -42,18 +42,20 @@ from job_market_intelligence.retrieval.validation import (  # noqa: E402
     write_json,
 )
 
+RAG_TESTS = ["tests/test_rag_routing.py", "tests/test_rag_stats.py"]
 QUICK_TESTS = [
     "tests/test_retrieval_evaluation.py",
     "tests/test_golden_set.py",
     "tests/test_retrieval_privacy.py",
     "tests/test_chunking.py",
-    "tests/test_rag_routing.py",
+    *RAG_TESTS,
     "tests/test_validation_workflow.py",
 ]
 HOOK_TESTS = [
     "tests/test_retrieval_evaluation.py",
     "tests/test_golden_set.py",
     "tests/test_retrieval_privacy.py",
+    *RAG_TESTS,
     "tests/test_validation_workflow.py::test_privacy_faults_without_private_corpus",
 ]
 
@@ -97,6 +99,7 @@ def run_validation(args, root: Path = ROOT) -> tuple[int, dict]:
     import pandas as pd
 
     run = new_run(root, args.mode)
+    targets = HOOK_TESTS if args.profile == "hook" else QUICK_TESTS
     checks, commands, comparisons = [], [], []
     input_paths, input_hashes = {}, {}
     manifest = {
@@ -104,6 +107,7 @@ def run_validation(args, root: Path = ROOT) -> tuple[int, dict]:
         "run_id": run.name,
         "mode": args.mode,
         "profile": args.profile,
+        "test_targets": targets,
         "commands": commands,
         "invocation": sys.argv,
         "started_at": now(),
@@ -144,7 +148,12 @@ def run_validation(args, root: Path = ROOT) -> tuple[int, dict]:
         missing = [name for name, path in input_paths.items() if not path.is_file()]
         if missing:
             checks.append(
-                check("inputs", "NOT RUN", "required input files are missing", missing=missing)
+                check(
+                    "inputs",
+                    "NOT RUN",
+                    "required input files are missing: " + ", ".join(missing),
+                    missing=missing,
+                )
             )
         else:
             input_hashes = {name: digest(path) for name, path in input_paths.items()}
@@ -163,7 +172,6 @@ def run_validation(args, root: Path = ROOT) -> tuple[int, dict]:
                 )
             )
 
-        targets = HOOK_TESTS if args.profile == "hook" else QUICK_TESTS
         exit_code = command(
             [
                 sys.executable,
@@ -191,7 +199,9 @@ def run_validation(args, root: Path = ROOT) -> tuple[int, dict]:
                 check(
                     "private_corpus_privacy",
                     "FAIL" if offenders else "PASS",
-                    "known-id and text-fragment scan",
+                    "known advertisement identifiers or text fragments found in published files"
+                    if offenders
+                    else "bounded known-id and opening-text scan completed",
                     required=args.mode != "quick",
                     offenders=offenders,
                     corpus_sha256=privacy_jobs_hash,
@@ -260,7 +270,14 @@ def run_validation(args, root: Path = ROOT) -> tuple[int, dict]:
             )
             if exit_code == 2 and (run / "worker_error.json").is_file():
                 error = json.loads((run / "worker_error.json").read_text())
-                checks.append(check("benchmark_capture", "NOT RUN", error["reason"]))
+                checks.append(
+                    check(
+                        "benchmark_capture",
+                        "NOT RUN",
+                        "benchmark dependency unavailable",
+                        private_detail=error["reason"],
+                    )
+                )
             elif exit_code is None:
                 checks.append(check("benchmark_capture", "NOT RUN", "benchmark timed out"))
             elif exit_code != 0:
@@ -300,9 +317,23 @@ def run_validation(args, root: Path = ROOT) -> tuple[int, dict]:
         if digest(args.policy) != policy_hash:
             raise ValueError("policy changed during validation")
     except (FileNotFoundError, ModuleNotFoundError) as exc:
-        checks.append(check("execution", "NOT RUN", str(exc)))
+        checks.append(
+            check(
+                "execution",
+                "NOT RUN",
+                "required file or dependency unavailable",
+                private_detail=str(exc),
+            )
+        )
     except Exception as exc:
-        checks.append(check("integrity", "FAIL", f"{type(exc).__name__}: {exc}"))
+        checks.append(
+            check(
+                "integrity",
+                "FAIL",
+                "invalid input or inconsistent validation evidence",
+                private_detail=f"{type(exc).__name__}: {exc}",
+            )
+        )
     except KeyboardInterrupt:
         checks.append(check("execution", "NOT RUN", "validation interrupted"))
     finally:
@@ -311,11 +342,27 @@ def run_validation(args, root: Path = ROOT) -> tuple[int, dict]:
                 check(
                     "real_benchmark",
                     "NOT RUN",
-                    "no candidate comparison completed",
+                    {
+                        "quick": "quick mode does not run a real benchmark comparison",
+                        "baseline": (
+                            "baseline mode captures reference scores without comparing versions"
+                        ),
+                    }.get(
+                        args.mode, "comparison prerequisites or benchmark capture did not complete"
+                    ),
                     required=args.mode == "full",
                     effect="NOT EVALUATED",
                 )
             )
+        checks.append(
+            check(
+                "answer_quality",
+                "NOT RUN",
+                "answer quality has not been measured end to end",
+                required=False,
+                effect="NOT EVALUATED",
+            )
+        )
         try:
             after = code_snapshot(root)
             stable = before is not None and before["fingerprint"] == after["fingerprint"]
@@ -333,18 +380,29 @@ def run_validation(args, root: Path = ROOT) -> tuple[int, dict]:
                 check(
                     "source_stability",
                     "PASS" if stable else "FAIL",
-                    "code and hashed inputs checked again after execution",
+                    "code and hashed inputs unchanged after execution"
+                    if stable
+                    else "code or hashed inputs changed during execution",
                 )
             )
         except Exception as exc:
-            checks.append(check("source_stability", "FAIL", str(exc)))
+            checks.append(
+                check(
+                    "source_stability",
+                    "FAIL",
+                    "source or input stability could not be checked",
+                    private_detail=str(exc),
+                )
+            )
         if scanned_publication is not None:
             publication_stable = scanned_publication == published_snapshot(root)
             checks.append(
                 check(
                     "privacy_scope_stability",
                     "PASS" if publication_stable else "FAIL",
-                    "scanned files checked for additions, deletions and changes",
+                    "scanned file set and content unchanged"
+                    if publication_stable
+                    else "scanned files were added, deleted or changed",
                 )
             )
         write_json(run / "checks.json", checks)
@@ -352,7 +410,8 @@ def run_validation(args, root: Path = ROOT) -> tuple[int, dict]:
         report = render_report(manifest, checks, comparisons)
         (run / "report.md").write_text(report)
         manifest["status"] = overall_status(checks)
-        # Only allowlisted fields leave the private run directory. No logs, paths or IDs.
+        # Only allowlisted fields leave the private run directory. Reasons are controlled
+        # text. Raw exception details, logs, private paths and advertisement IDs stay private.
         public = root / "reports/validation" / run.name
         staged = run / "export"
         staged.mkdir(exist_ok=False)
@@ -362,6 +421,7 @@ def run_validation(args, root: Path = ROOT) -> tuple[int, dict]:
                 "run_id": run.name,
                 "mode": args.mode,
                 "profile": args.profile,
+                "test_targets": targets,
                 "status": manifest["status"],
                 "code_commit": manifest.get("code", {}).get("commit"),
                 "code_dirty": manifest.get("code", {}).get("dirty"),
@@ -369,8 +429,9 @@ def run_validation(args, root: Path = ROOT) -> tuple[int, dict]:
                 "policy_sha256": manifest.get("policy_sha256"),
                 "evaluator_sha256": manifest.get("evaluator_sha256"),
                 "checks": [
-                    {key: c[key] for key in ("name", "status", "required")}
+                    {key: c[key] for key in ("name", "status", "required", "reason")}
                     | ({"counts": c["counts"]} if "counts" in c else {})
+                    | ({"effect": c["effect"]} if "effect" in c else {})
                     for c in checks
                 ],
                 "comparisons": comparisons,

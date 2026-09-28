@@ -70,8 +70,8 @@ set against that run. Later report additions also require a fresh privacy check.
 
 | Mode | Scope | Real comparison |
 |---|---|---|
-| quick | Evaluation, golden set, chunking, routing, privacy and validator acceptance tests | NOT RUN |
-| quick --profile hook | Evaluation, golden set, privacy guards and synthetic leak detection | NOT RUN |
+| quick | Evaluation, golden set, chunking, RAG guards and statistics, privacy and validator acceptance tests | NOT RUN |
+| quick --profile hook | Evaluation, golden set, RAG guards and statistics, privacy guards and synthetic leak detection | NOT RUN |
 | baseline | Quick checks and fresh benchmark capture | NOT RUN |
 | full | Quick checks, baseline verification, fresh candidate capture and paired comparison | Runs if prerequisites pass |
 
@@ -82,6 +82,17 @@ privacy tests may skip when data is absent, and that limitation is reported sepa
 Unexpected skipped tests, no executed tests, missing reports and zero collected tests
 cannot silently pass. Test counts come from JUnit cases, and subprocess exit codes
 are retained.
+
+Both profiles run the RAG tests for routing, prompt construction, answer parsing,
+citation guards and SQL statistics over synthetic data. They do not call a live answer
+model. Every run records `answer_quality: NOT RUN` separately, with the reason that
+answer quality has not been measured end to end. This remains true after prompt
+changes and even when a full retrieval comparison completes.
+The manifest and public report list the exact selected pytest targets. PASS applies
+to those checks and does not establish that every behavior affected by an edit was
+verified. The Markdown status table and public JSON include reasons drawn from the
+structured checks. Reasons use controlled text, while raw exceptions and private
+paths remain in the private check details.
 
 ## Statistics
 

@@ -314,6 +314,11 @@ def run_fixture(tmp_path, monkeypatch, policy, expected):
                     "judgements_sha256": "synthetic-judgements",
                 },
             )
+        elif code == 2:
+            write_json(
+                run / "worker_error.json",
+                {"status": "NOT RUN", "reason": state.get("worker_error", "fixture dependency")},
+            )
         return code
 
     monkeypatch.setattr(runner, "command", fake_command)
@@ -330,6 +335,92 @@ def test_quick_pass_does_not_claim_a_real_benchmark(run_fixture):
     assert real["status"] == "NOT RUN" and real["effect"] == "NOT EVALUATED"
     assert "fixture-private-ad" not in Path(summary["public_report"]).read_text()
     assert manifest["evaluator_sha256"] == json_digest(manifest["code"]["files"])
+
+
+@pytest.mark.parametrize("profile", ["quick", "hook"])
+def test_prompt_edit_gets_an_explicit_answer_quality_limit(run_fixture, monkeypatch, profile):
+    root, args, _ = run_fixture
+    args.profile = profile
+    prompt_name = "src/job_market_intelligence/rag/prompts.py"
+    assert hook.relevant_path(root, prompt_name)
+    prompt = root / prompt_name
+    prompt.parent.mkdir(parents=True)
+    prompt.write_text('ANSWER_SYSTEM_PROMPT = "Revised prompt"\n')
+    snapshot = runner.code_snapshot(root)
+    snapshot["files"][prompt_name] = digest(prompt)
+    snapshot.update(dirty=True, fingerprint=json_digest(snapshot["files"]))
+    monkeypatch.setattr(runner, "code_snapshot", lambda root: snapshot)
+    code, result = runner.run_validation(args, root)
+    assert code == 0
+    report = Path(result["public_report"])
+    public = json.loads(report.with_name("summary.json").read_text())
+    answer = next(c for c in public["checks"] if c["name"] == "answer_quality")
+    assert answer["status"] == "NOT RUN" and answer["effect"] == "NOT EVALUATED"
+    assert answer["required"] is False
+    assert "Answer quality has not been measured end to end" in report.read_text()
+    assert answer["reason"] in report.read_text()
+    actual = verify_run(Path(result["run_dir"]))
+    targets = actual["commands"][0]["argv"][3:-3]
+    assert public["test_targets"] == actual["test_targets"] == targets
+    assert all(f"`{target}`" in report.read_text() for target in targets)
+
+
+@pytest.mark.parametrize("rag_target", ["tests/test_rag_routing.py", "tests/test_rag_stats.py"])
+def test_hook_profile_fails_when_a_selected_rag_test_fails(run_fixture, monkeypatch, rag_target):
+    root, args, state = run_fixture
+    args.profile = "hook"
+    command = runner.command
+
+    def fail_rag_test_if_selected(argv, *args, **kwargs):
+        if rag_target in argv:
+            state.update(
+                test_exit=1, test_body='<testcase name="rag_regression"><failure/></testcase>'
+            )
+        return command(argv, *args, **kwargs)
+
+    monkeypatch.setattr(runner, "command", fail_rag_test_if_selected)
+    code, result = runner.run_validation(args, root)
+    assert code == 1 and result["status"] == "FAIL"
+    checks = json.loads((Path(result["run_dir"]) / "checks.json").read_text())
+    assert next(c for c in checks if c["name"] == "tests")["counts"]["failed"] == 1
+
+
+@pytest.mark.parametrize("exception", [FileNotFoundError, ValueError])
+def test_public_reasons_exclude_private_exception_details(run_fixture, monkeypatch, exception):
+    root, args, _ = run_fixture
+    private_message = f"{root}/private/fixture-private-ad.csv | raw diagnostic\nnext line"
+
+    def fail_query_loading(*args):
+        raise exception(private_message)
+
+    monkeypatch.setattr(runner, "expected_queries", fail_query_loading)
+    code, result = runner.run_validation(args, root)
+    assert code == (2 if exception is FileNotFoundError else 1)
+    checks = json.loads((Path(result["run_dir"]) / "checks.json").read_text())
+    diagnostic = next(c for c in checks if "private_detail" in c)
+    assert private_message in diagnostic["private_detail"]
+    report = Path(result["public_report"])
+    public = json.loads(report.with_name("summary.json").read_text())
+    exported = next(c for c in public["checks"] if c["name"] == diagnostic["name"])
+    assert exported["reason"] == diagnostic["reason"]
+    assert exported["reason"] in report.read_text()
+    assert "private_detail" not in exported
+    assert "fixture-private-ad" not in report.read_text() + json.dumps(public)
+
+
+def test_missing_benchmark_dependency_has_a_public_reason_and_private_detail(run_fixture):
+    root, args, state = run_fixture
+    args.mode = "baseline"
+    state.update(benchmark_exit=2, worker_error="/private/fixture-private-ad/model unavailable")
+    code, result = runner.run_validation(args, root)
+    assert code == 2
+    report = Path(result["public_report"])
+    public = json.loads(report.with_name("summary.json").read_text())
+    benchmark = next(c for c in public["checks"] if c["name"] == "benchmark_capture")
+    assert benchmark["status"] == "NOT RUN"
+    assert benchmark["reason"] == "benchmark dependency unavailable"
+    assert benchmark["reason"] in report.read_text()
+    assert "fixture-private-ad" not in report.read_text() + json.dumps(public)
 
 
 def test_public_evidence_identifies_dirty_source_and_policy(run_fixture, monkeypatch):
@@ -357,6 +448,10 @@ def test_full_requires_an_explicit_baseline(run_fixture):
     code, summary = runner.run_validation(args, root)
     assert code == 2 and summary["status"] == "NOT RUN"
     assert not (Path(summary["run_dir"]) / "scores.csv").exists()
+    public = json.loads(Path(summary["public_report"]).with_name("summary.json").read_text())
+    baseline = next(c for c in public["checks"] if c["name"] == "baseline")
+    report = Path(summary["public_report"]).read_text()
+    assert "| Reason |" in report and baseline["reason"] in report
 
 
 def test_capture_then_compare_and_reject_changed_inputs(run_fixture):
@@ -371,6 +466,10 @@ def test_capture_then_compare_and_reject_changed_inputs(run_fixture):
     state["score"] = 0.6
     code, improved = runner.run_validation(args, root)
     assert code == 0 and improved["status"] == "PASS"
+    public = json.loads(Path(improved["public_report"]).with_name("summary.json").read_text())
+    assert all(c["effect"] == "IMPROVEMENT" for c in public["comparisons"])
+    assert next(c for c in public["checks"] if c["name"] == "answer_quality")["status"] == "NOT RUN"
+    assert "Answer quality has not been measured end to end" in Path(improved["report"]).read_text()
     args.document_labels.write_text("changed input")
     code, changed = runner.run_validation(args, root)
     assert code == 1
@@ -510,7 +609,9 @@ def test_missing_private_corpus_is_visible_but_optional_for_quick(run_fixture):
     code, summary = runner.run_validation(args, root)
     checks = json.loads((Path(summary["run_dir"]) / "checks.json").read_text())
     assert code == 0
-    assert next(c for c in checks if c["name"] == "private_corpus_privacy")["status"] == "NOT RUN"
+    privacy = next(c for c in checks if c["name"] == "private_corpus_privacy")
+    assert privacy["status"] == "NOT RUN"
+    assert privacy["reason"] in Path(summary["public_report"]).read_text()
 
 
 def test_hook_filters_paths_and_handles_missing_python(tmp_path):
@@ -556,6 +657,8 @@ def test_hook_runs_only_lightweight_checks(tmp_path, monkeypatch, timeout):
     assert "NOT RUN" in message
     if not timeout:
         assert "PASS for the hook test selection" in message
+        assert "Only the selected tests were checked" in message
+        assert "Answer quality: NOT RUN" in message
 
 
 def test_capture_runs_real_scoring_on_synthetic_inputs(tmp_path, expected, monkeypatch):
